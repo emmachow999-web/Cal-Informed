@@ -1,0 +1,42 @@
+name: Update News Daily
+
+on:
+  # Runs every day at 6am UTC (11pm PT / 2am ET)
+  schedule:
+    - cron: '0 6 * * *'
+
+  # Also lets you trigger it manually from the Actions tab in GitHub
+  workflow_dispatch:
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write   # needed to commit the updated news.html back to the repo
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install @anthropic-ai/sdk
+
+      - name: Generate fresh news
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: node scripts/generate-news.js
+
+      - name: Commit and push updated news.html
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pages/news.html
+          # Only commit if something actually changed
+          git diff --staged --quiet || git commit -m "chore: auto-update news [$(date +'%Y-%m-%d')]"
+          git push
