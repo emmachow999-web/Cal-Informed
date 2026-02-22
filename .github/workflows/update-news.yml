@@ -26,7 +26,7 @@ jobs:
 
       - name: Generate fresh news
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
         run: node scripts/generate-news.js
 
       - name: Commit and push updated news.html
