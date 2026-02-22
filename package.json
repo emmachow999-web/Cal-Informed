@@ -7,6 +7,6 @@
     "generate-news": "node scripts/generate-news.js"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.21.0"
+    "groq-sdk": "^0.9.0"
   }
 }
