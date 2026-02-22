@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>News — CalInformed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="nav-logo" onclick="location.href='../index.html'">Cal<span>Informed</span></div>
+    <div class="nav-links">
+      <a href="what-is-data-privacy.html" class="nav-btn">What is Data Privacy?</a>
+      <a href="california-privacy-laws.html" class="nav-btn">California Privacy Laws</a>
+      <a href="protect-yourself.html" class="nav-btn">Protect Yourself</a>
+      <a href="news.html" class="nav-btn active">News</a>
+      <a href="resources.html" class="nav-btn">Resources</a>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <p class="hero-eyebrow">&#x2022; News &amp; Updates &#x2022;</p>
+    <h1>What's Happening in <em>Data Privacy</em> Right Now</h1>
+    <p>Updated daily by AI — stories across California privacy law, teen safety, data breaches, and Big Tech.</p>
+  </header>
+
+  <div class="section">
+    <div class="inner">
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px; align-items:center;">
+        <span style="font-family:'Poppins',sans-serif; font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#999;">Filter:</span>
+        <button class="topic-filter active" onclick="filterNews(this,'all')">All Topics</button>
+        <button class="topic-filter" onclick="filterNews(this,'california')">California Laws</button>
+        <button class="topic-filter" onclick="filterNews(this,'minors')">Teen &amp; Minors</button>
+        <button class="topic-filter" onclick="filterNews(this,'breaches')">Data Breaches</button>
+        <button class="topic-filter" onclick="filterNews(this,'bigtech')">Big Tech</button>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; flex-wrap:wrap; gap:12px;">
+        <div>
+          <p class="section-label" style="margin-bottom:4px;">Auto-Updated Feed</p>
+          <h2 class="section-title" style="margin-bottom:0;">Latest Privacy News</h2>
+        </div>
+        <div style="font-family:'Poppins',sans-serif; font-size:0.78rem; color:#999;">
+          <span class="live-badge"><span class="live-dot"></span>Last updated: February 22, 2026</span>
+        </div>
+      </div>
+
+      <div id="news-grid" class="news-grid">
+
+        <div class="news-card" data-category="california">
+          <div class="news-card-header">
+            <span class="news-tag purple">California Laws</span>
+            <h3>California's Updated Privacy Law Takes Effect</h3>
+          </div>
+          <p>As of January 1, 2026, the California Privacy Rights Act (CPRA) has been updated, giving Californians more control over their personal data. This means companies must be more transparent about the data they collect and provide easier ways for users to opt-out of data sharing. The CPRA also established the California Privacy Protection Agency to enforce these new regulations.</p>
+          <div class="news-card-footer">
+            <span>January 2026</span>
+            <a href="https://www.ca.gov/archive/executive-orders" target="_blank" rel="noopener" class="read-more">California Governor's Office →</a>
+          </div>
+        </div>
+
+        <div class="news-card" data-category="minors">
+          <div class="news-card-header">
+            <span class="news-tag green">Teen & Minors</span>
+            <h3>New Study Reveals Teens' Social Media Data at Risk</h3>
+          </div>
+          <p>A recent study by the Pew Research Center found that many teenagers are unaware of how their social media data is being used. The study showed that 54% of teens aged 13-17 have experienced online harassment, and 45% have had their personal data shared without consent. This highlights the need for better education on online safety and data protection for minors.</p>
+          <div class="news-card-footer">
+            <span>February 2026</span>
+            <a href="https://www.pewresearch.org/" target="_blank" rel="noopener" class="read-more">Pew Research Center →</a>
+          </div>
+        </div>
+
+        <div class="news-card" data-category="breaches">
+          <div class="news-card-header">
+            <span class="news-tag navy">Data Breaches</span>
+            <h3>Major Data Breach Exposes Millions of User Accounts</h3>
+          </div>
+          <p>In a recent data breach, hackers gained access to the databases of several major companies, including Microsoft and Amazon, exposing millions of user accounts. The breach is believed to have occurred due to a vulnerability in a third-party software used by the companies. This incident highlights the importance of robust cybersecurity measures to protect user data.</p>
+          <div class="news-card-footer">
+            <span>January 2026</span>
+            <a href="https://www.bloomberg.com/" target="_blank" rel="noopener" class="read-more">Bloomberg →</a>
+          </div>
+        </div>
+
+        <div class="news-card" data-category="bigtech">
+          <div class="news-card-header">
+            <span class="news-tag red">Big Tech</span>
+            <h3>Google Faces Antitrust Lawsuit Over Data Collection Practices</h3>
+          </div>
+          <p>The US Department of Justice has filed an antitrust lawsuit against Google, alleging that the company's data collection practices are anti-competitive and harm consumers. The lawsuit claims that Google's dominance in the search and advertising markets allows it to collect and use user data in ways that stifle competition and limit user choice.</p>
+          <div class="news-card-footer">
+            <span>February 2026</span>
+            <a href="https://www.nytimes.com/" target="_blank" rel="noopener" class="read-more">The New York Times →</a>
+          </div>
+        </div>
+
+        <div class="news-card" data-category="california">
+          <div class="news-card-header">
+            <span class="news-tag purple">California Laws</span>
+            <h3>California Introduces Bill to Regulate AI-Generated Content</h3>
+          </div>
+          <p>A new bill introduced in the California State Legislature aims to regulate the use of AI-generated content, particularly in the context of deepfakes and disinformation. The bill would require companies to clearly label AI-generated content and provide transparency into the algorithms used to create it.</p>
+          <div class="news-card-footer">
+            <span>February 2026</span>
+            <a href="https://leginfo.legislature.ca.gov/" target="_blank" rel="noopener" class="read-more">California State Legislature →</a>
+          </div>
+        </div>
+
+        <div class="news-card" data-category="minors">
+          <div class="news-card-header">
+            <span class="news-tag green">Teen & Minors</span>
+            <h3>TikTok Introduces New Safety Features for Teen Users</h3>
+          </div>
+          <p>TikTok has introduced new safety features aimed at protecting its teenage users, including enhanced parental controls and stricter rules around online interactions. The move comes amid growing concerns about the impact of social media on mental health and online safety for minors.</p>
+          <div class="news-card-footer">
+            <span>February 2026</span>
+            <a href="https://www.tiktok.com/" target="_blank" rel="noopener" class="read-more">TikTok →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section gray">
+    <div class="inner">
+      <p class="section-label">Ongoing Debates</p>
+      <h2 class="section-title">The Biggest Privacy Questions Right Now</h2>
+      <p class="section-subtitle">These debates shape the laws of tomorrow — and they affect you directly.</p>
+      <div class="hot-topics">
+
+          <div class="hot-topic" style="border-left-color:var(--purple)">
+            <div class="ht-num">01</div>
+            <div class="ht-content">
+              <h4>The Future of Data Privacy in California</h4>
+              <p>As California continues to lead the way in data privacy regulation, there is ongoing debate about the effectiveness of the CPRA and the role of the California Privacy Protection Agency. Some argue that the law does not go far enough to protect consumer data, while others believe it imposes too many burdens on businesses. As the law continues to evolve, it is likely that we will see further debates about the balance between data protection and economic growth.</p>
+            </div>
+          </div>
+
+          <div class="hot-topic" style="border-left-color:var(--navy)">
+            <div class="ht-num">02</div>
+            <div class="ht-content">
+              <h4>The Impact of Data Breaches on Consumer Trust</h4>
+              <p>The recent string of high-profile data breaches has raised concerns about the impact on consumer trust in online services. As companies continue to collect and store vast amounts of user data, there is a growing need for transparency and accountability in the event of a breach. The debate centers around the role of companies in protecting user data and the need for stronger regulations to prevent breaches.</p>
+            </div>
+          </div>
+
+          <div class="hot-topic" style="border-left-color:var(--green)">
+            <div class="ht-num">03</div>
+            <div class="ht-content">
+              <h4>The Ethics of AI-Generated Content for Minors</h4>
+              <p>The increasing use of AI-generated content, particularly in social media and online advertising, has raised concerns about the impact on minors. There is ongoing debate about the ethics of using AI-generated content to target or manipulate young people, and the need for greater transparency and regulation in this area. As AI technology continues to evolve, it is likely that we will see further debates about the responsible use of AI-generated content.</p>
+            </div>
+          </div>
+
+          <div class="hot-topic" style="border-left-color:#c0392b">
+            <div class="ht-num">04</div>
+            <div class="ht-content">
+              <h4>The Role of Big Tech in Shaping Data Privacy Policy</h4>
+              <p>The influence of Big Tech companies on data privacy policy is a subject of ongoing debate. Some argue that these companies have too much power and influence over the development of data privacy regulations, while others believe that they are driving innovation and progress in the field. As data privacy continues to evolve, it is likely that we will see further debates about the role of Big Tech in shaping policy and the need for greater accountability and transparency.</p>
+            </div>
+          </div>
+      </div>
+      <div class="callout" style="margin-top:32px;">
+        <strong>Stay Informed</strong>
+        For the most current developments, follow the California Privacy Protection Agency at cppa.ca.gov,
+        the Electronic Frontier Foundation at eff.org, and the California AG's privacy page at oag.ca.gov/privacy.
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-logo" onclick="location.href='../index.html'">Cal<span>Informed</span></div>
+    <div class="footer-links"><a href="#">Instagram</a><a href="#">GitHub</a><a href="#">Twitter</a></div>
+    <div class="footer-copy">© 2025 CalInformed. Informational purposes only. Not legal advice.</div>
+  </footer>
+
+  <script>
+    function filterNews(btn, category) {
+      document.querySelectorAll('.topic-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#news-grid .news-card').forEach(card => {
+        card.style.display = (category === 'all' || card.dataset.category === category) ? '' : 'none';
+      });
+    }
+  </script>
+
+</body>
+</html>
