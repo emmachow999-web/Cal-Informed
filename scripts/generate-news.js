@@ -1,24 +1,25 @@
 // scripts/generate-news.js
-// Runs via GitHub Actions daily. Calls Claude, gets fresh privacy news,
-// and writes a fully static pages/news.html — no browser API call needed.
+// Uses Google Gemini (free tier) to generate privacy news daily.
+// Runs via GitHub Actions and writes a static pages/news.html.
 
-import Anthropic from '@anthropic-ai/sdk';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const client = new Anthropic(); // picks up ANTHROPIC_API_KEY from env
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
 const today = new Date().toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric'
 });
 
-// ─── 1. Ask Claude for news data ────────────────────────────────────────────
+// ─── 1. Ask Gemini for news data ─────────────────────────────────────────────
 
 const prompt = `Today is ${today}. You are a news summarizer for a youth data privacy education website aimed at California teenagers.
 
-Generate a JSON object with exactly this structure — no markdown, no explanation, just raw JSON:
+Generate a JSON object with exactly this structure — no markdown, no code fences, no explanation, just raw JSON:
 
 {
   "articles": [
@@ -88,7 +89,7 @@ Generate a JSON object with exactly this structure — no markdown, no explanati
       "num": "01",
       "borderColor": "var(--purple)",
       "title": "...",
-      "summary": "2-3 sentence summary of a major current ongoing privacy debate affecting young people. Be specific to ${today}."
+      "summary": "2-3 sentences on a major ongoing privacy debate affecting young people. Be specific to ${today}."
     },
     {
       "num": "02",
@@ -111,23 +112,18 @@ Generate a JSON object with exactly this structure — no markdown, no explanati
   ]
 }
 
-Make every article and debate feel fresh, current, and specific to what is actually happening in data privacy as of ${today}. Use real organizations, laws, and company names where appropriate.`;
+Make every article and debate feel fresh, current, and specific to data privacy as of ${today}. Use real organizations, laws, and company names where appropriate.`;
 
 console.log(`Fetching news for ${today}...`);
 
-const message = await client.messages.create({
-  model: 'claude-opus-4-5',
-  max_tokens: 2000,
-  messages: [{ role: 'user', content: prompt }]
-});
-
-const raw = message.content.map(b => b.text || '').join('');
+const result = await model.generateContent(prompt);
+const raw = result.response.text();
 const clean = raw.replace(/```json|```/g, '').trim();
 const { articles, debates } = JSON.parse(clean);
 
 console.log(`Got ${articles.length} articles and ${debates.length} debates.`);
 
-// ─── 2. Build HTML snippets ──────────────────────────────────────────────────
+// ─── 2. Build HTML snippets ───────────────────────────────────────────────────
 
 const tagColorMap = { purple: 'purple', navy: 'navy', green: 'green', red: 'red' };
 
@@ -163,7 +159,7 @@ function buildDebate(d) {
 const articlesHtml = articles.map(buildArticleCard).join('\n');
 const debatesHtml  = debates.map(buildDebate).join('\n');
 
-// ─── 3. Write the full static news.html ─────────────────────────────────────
+// ─── 3. Write the full static news.html ──────────────────────────────────────
 
 const html = `<!DOCTYPE html>
 <html lang="en">
@@ -196,7 +192,6 @@ const html = `<!DOCTYPE html>
   <div class="section">
     <div class="inner">
 
-      <!-- FILTER BUTTONS -->
       <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px; align-items:center;">
         <span style="font-family:'Poppins',sans-serif; font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#999;">Filter:</span>
         <button class="topic-filter active" onclick="filterNews(this,'all')">All Topics</button>
@@ -206,7 +201,6 @@ const html = `<!DOCTYPE html>
         <button class="topic-filter" onclick="filterNews(this,'bigtech')">Big Tech</button>
       </div>
 
-      <!-- HEADER + TIMESTAMP -->
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; flex-wrap:wrap; gap:12px;">
         <div>
           <p class="section-label" style="margin-bottom:4px;">Auto-Updated Feed</p>
@@ -217,7 +211,6 @@ const html = `<!DOCTYPE html>
         </div>
       </div>
 
-      <!-- STATIC NEWS GRID -->
       <div id="news-grid" class="news-grid">
 ${articlesHtml}
       </div>
@@ -225,7 +218,6 @@ ${articlesHtml}
     </div>
   </div>
 
-  <!-- HOT TOPICS -->
   <div class="section gray">
     <div class="inner">
       <p class="section-label">Ongoing Debates</p>
@@ -249,7 +241,6 @@ ${debatesHtml}
   </footer>
 
   <script>
-    // Client-side filter — no API call needed, just show/hide existing cards
     function filterNews(btn, category) {
       document.querySelectorAll('.topic-filter').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
