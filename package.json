@@ -1,0 +1,12 @@
+{
+  "name": "calinformed",
+  "version": "1.0.0",
+  "description": "CalInformed – California data privacy education for teens",
+  "type": "module",
+  "scripts": {
+    "generate-news": "node scripts/generate-news.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0"
+  }
+}
