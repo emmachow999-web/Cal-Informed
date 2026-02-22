@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CalInformed — Know Your Privacy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===============================
+       NAVIGATION
+       =============================== -->
+  <nav class="site-nav">
+    <div class="nav-logo" onclick="showPage('home')">Cal<span>Informed</span></div>
+    <div class="nav-links">
+      <button onclick="showPage('privacy')" id="nav-privacy">What is Data Privacy?</button>
+      <button onclick="showPage('laws')" id="nav-laws">California Privacy Laws</button>
+      <button onclick="showPage('protect')" id="nav-protect">Protect Yourself</button>
+      <button onclick="showPage('news')" id="nav-news">News</button>
+      <button onclick="showPage('resources')" id="nav-resources">Resources</button>
+    </div>
+  </nav>
+
+  <!-- ===============================
+       HOME PAGE
+       =============================== -->
+  <div id="page-home" class="page active">
+    <header class="hero">
+      <p class="hero-eyebrow">&#x2022; Know Your Rights Online &#x2022;</p>
+      <h1><em>51%</em> of Californians didn't ask to delete their data — because they didn't know they could.</h1>
+      <p>Your information is collected, shared, and sold every day. It's time to understand what that means — and what you can do about it.</p>
+      <div class="hero-cta">
+        <button class="btn-primary" onclick="showPage('privacy')">Start Learning</button>
+        <button class="btn-outline" onclick="showPage('protect')">Protect Yourself →</button>
+      </div>
+    </header>
+
+    <div class="stat-strip">
+      <div class="stat-item">
+        <span class="stat-number">51%</span>
+        <span class="stat-label">of Californians didn't know they could delete their data</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">6</span>
+        <span class="stat-label">major rights granted to you under CCPA &amp; CPRA</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">18</span>
+        <span class="stat-label">years old &amp; under — minors with extra legal protections</span>
+      </div>
+    </div>
+
+    <div class="mission-strip">
+      <div class="mission-box">
+        <h2>Our Mission</h2>
+        <p>Our mission is to make data privacy simple and accessible for young people by breaking down complex laws, sharing real-life examples, and giving practical tools anyone can use to protect themselves online.</p>
+      </div>
+    </div>
+
+    <main id="main-content">
+      <section class="topics-section">
+        <div style="max-width:1100px;margin:0 auto;">
+          <div style="margin-bottom:48px;">
+            <h2 class="section-title">Explore the Topics</h2>
+            <p class="section-subtitle">Three areas every young Californian should understand about their digital life.</p>
+          </div>
+          <div class="topics-grid">
+            <div class="topic-card">
+              <div class="topic-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+                  <circle cx="12" cy="5" r="2.5"/><path d="M9 12l1.5 4.5L12 14l1.5 2.5L15 12"/>
+                  <path d="M8 9.5c0 0 1.5 1 4 1s4-1 4-1"/>
+                  <line x1="9" y1="19" x2="8" y2="22"/><line x1="15" y1="19" x2="16" y2="22"/>
+                </svg>
+              </div>
+              <h3>Your Digital Footprint</h3>
+              <p>Every app, website, and platform collects data about you. Learn what's being stored, how companies use it, and why "I have nothing to hide" isn't the whole story.</p>
+              <button class="topic-btn" onclick="showPage('privacy')">Explore →</button>
+            </div>
+            <div class="topic-card">
+              <div class="topic-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+                  <line x1="12" y1="3" x2="12" y2="21"/><path d="M5 21h14"/>
+                  <path d="M3 9l4-6 4 6a4 4 0 0 1-8 0z"/><path d="M13 9l4-6 4 6a4 4 0 0 1-8 0z"/>
+                </svg>
+              </div>
+              <h3>California Privacy Laws</h3>
+              <p>California leads the nation in data privacy. The CCPA and CPRA give you real rights — like the right to know, delete, and opt out of the sale of your data.</p>
+              <button class="topic-btn" onclick="showPage('laws')">Explore →</button>
+            </div>
+            <div class="topic-card">
+              <div class="topic-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  <polyline points="9 12 11 14 15 10"/>
+                </svg>
+              </div>
+              <h3>Protect Yourself Online</h3>
+              <p>From adjusting your app permissions to enabling Global Privacy Control, there are real steps you can take today to protect your digital life — no tech background required.</p>
+              <button class="topic-btn" onclick="showPage('protect')">Explore →</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="did-you-know">
+        <h2>Did You Know?</h2>
+        <blockquote>"This landmark law secures new privacy rights for California consumers, including the right to know, delete, and opt out of the sale of personal information."</blockquote>
+        <cite>— California Office of the Attorney General, on the CCPA</cite>
+      </div>
+
+      <section class="rights-section">
+        <div style="max-width:1100px;margin:0 auto;">
+          <h2 class="section-title">Your Rights Under California Law</h2>
+          <p class="section-subtitle">The CCPA and CPRA give every California consumer these protections.</p>
+          <div class="rights-grid">
+            <div class="right-chip"><strong>Right to Know</strong>Find out what personal information a business has collected about you and how it's used or shared.</div>
+            <div class="right-chip"><strong>Right to Delete</strong>Ask businesses to delete your personal information — with some exceptions.</div>
+            <div class="right-chip"><strong>Right to Opt Out</strong>Tell businesses not to sell or share your data, including through browser signals like Global Privacy Control (GPC).</div>
+            <div class="right-chip"><strong>Right to Correct</strong>Fix inaccurate personal information a business holds about you.</div>
+            <div class="right-chip"><strong>Right to Limit Use</strong>Restrict how companies use your sensitive personal information.</div>
+            <div class="right-chip"><strong>Right to Non-Discrimination</strong>Companies cannot penalize you for exercising your privacy rights.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-logo" onclick="showPage('home')">Cal<span>Informed</span></div>
+      <div class="footer-links"><a href="#">Instagram</a><a href="#">GitHub</a><a href="#">Twitter</a></div>
+      <div class="footer-copy">© 2025 CalInformed. Informational purposes only. Not legal advice.</div>
+    </footer>
+  </div>
+
+  <!-- ===============================
+       WHAT IS DATA PRIVACY PAGE
+       =============================== -->
+  <div id="page-privacy" class="page">
+    <header class="page-hero">
+      <p class="hero-eyebrow">&#x2022; What is Data Privacy? &#x2022;</p>
+      <h1>Your <em>Digital Footprint</em> — What Is It &amp; Why Does It Matter?</h1>
+      <p>Every time you go online, you leave a trail of data behind. Understanding what that trail looks like — and who's reading it — is the first step to taking control.</p>
+    </header>
+
+    <div class="section">
+      <div class="inner">
+        <div class="two-col">
+          <div>
+            <p class="section-label">The Basics</p>
+            <h2 class="section-title">What is Data Privacy?</h2>
+            <p class="prose">Data privacy is your ability to control what personal information about you is collected, how it's used, who it's shared with, and how long it's kept. It's not just about secrets — it's about power. When companies have your data, they have power over your experience, your decisions, and even your identity online.</p>
+            <p class="prose">Think of it like your bedroom. You decide who gets to walk in, look around, and take things. Data privacy is the same concept — but for your personal information on the internet.</p>
+          </div>
+          <div>
+            <div class="callout"><strong>Did You Know?</strong>The average American's data is bought and sold by hundreds of data brokers — companies whose entire business model is collecting and reselling personal information, often without you ever knowing.</div>
+            <div class="callout navy"><strong>What counts as "personal data"?</strong>Your name, email, location, phone number, browsing history, purchase history, face (via facial recognition), voice recordings, health info, political views, and much more.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section gray">
+      <div class="inner">
+        <p class="section-label">What They Know</p>
+        <h2 class="section-title">What Exactly Is Being Collected About You?</h2>
+        <p class="section-subtitle">Every app, site, and service you use tracks different types of data. Here are the main categories:</p>
+        <div class="data-types">
+          <div class="data-type"><div class="dt-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7D3CAF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><h4>Identity Data</h4><p>Name, date of birth, email, phone number, username, profile photo</p></div>
+          <div class="data-type"><div class="dt-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#303778" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h4>Location Data</h4><p>Your GPS coordinates, home address, places you visit, check-ins</p></div>
+          <div class="data-type"><div class="dt-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5a2880" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16"/><path d="M16 6v16"/></svg></div><h4>Behavioral Data</h4><p>What you click, how long you look at posts, your search history, purchase patterns</p></div>
+          <div class="data-type"><div class="dt-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#3d6e57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><h4>Device Data</h4><p>Your device type, operating system, browser, IP address, cookies</p></div>
+          <div class="data-type"><div class="dt-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#7D3CAF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><h4>Inferred Data</h4><p>Predictions about your personality, income, political views, and future behavior — guessed from patterns</p></div>
+          <div class="data-type"><div class="dt-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#303778" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><h4>Communication Data</h4><p>Messages, posts, comments, emails (sometimes), and who you interact with</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="inner">
+        <p class="section-label">How It Happens</p>
+        <h2 class="section-title">How Do Websites Actually Track You?</h2>
+        <p class="section-subtitle">Tracking isn't magic — it uses a set of technical tools most people have never heard of.</p>
+        <div class="cards-grid">
+          <div class="card"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div><h3>Cookies</h3><p>Small text files stored in your browser that remember who you are across sessions. Third-party cookies let advertisers track you across <em>different</em> websites — not just the one you're on.</p></div>
+          <div class="card navy-top"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><h3>Pixels &amp; Trackers</h3><p>Invisible 1×1 pixel images embedded in emails or pages that fire a signal when loaded — telling companies you've opened an email or visited a page, even without clicking anything.</p></div>
+          <div class="card green-top"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div><h3>Browser Fingerprinting</h3><p>Even without cookies, companies can identify you by your unique browser setup — your fonts, screen resolution, plugins, and time zone combine into a "fingerprint" that's yours alone.</p></div>
+          <div class="card"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div><h3>Login Tracking</h3><p>When you use "Log in with Google" or "Log in with Facebook," those companies can follow your activity on that third-party site too.</p></div>
+          <div class="card navy-top"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><h3>IP Address Logging</h3><p>Your IP address roughly reveals your location. Every website you visit automatically receives your IP — it's built into how the internet works.</p></div>
+          <div class="card green-top"><div class="card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>App Permissions</h3><p>Apps on your phone request access to your microphone, camera, contacts, and location. Many collect this data even when you're not actively using the app.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-banner">
+      <blockquote>"If you're not paying for the product, you are the product."</blockquote>
+      <cite>— Common saying in the tech privacy world, describing ad-supported platforms</cite>
+    </div>
+
+    <div class="section gray">
+      <div class="inner">
+        <p class="section-label">Clearing Things Up</p>
+        <h2 class="section-title">"I Have Nothing to Hide" — and Other Myths</h2>
+        <p class="section-subtitle">Privacy isn't about hiding wrongdoing. It's about control, dignity, and safety.</p>
+        <div class="myth-grid">
+          <div class="myth-item"><div class="myth"><div class="myth-label">Myth</div><p>"I have nothing to hide, so I don't need to care about privacy."</p></div><div class="fact"><div class="fact-label">Reality</div><p>Privacy isn't about secrets — it's about control. You close the bathroom door not because you're doing something wrong, but because some things are personal. Data can also be used to discriminate, manipulate, or target you.</p></div></div>
+          <div class="myth-item"><div class="myth"><div class="myth-label">Myth</div><p>"I already agreed to the Terms of Service, so it's fine."</p></div><div class="fact"><div class="fact-label">Reality</div><p>Most Terms of Service run over 30,000 words. Nobody reads them — and many contain data-sharing clauses that would surprise most users. "Agreed" doesn't always mean informed consent.</p></div></div>
+          <div class="myth-item"><div class="myth"><div class="myth-label">Myth</div><p>"Only criminals and activists need to worry about privacy."</p></div><div class="fact"><div class="fact-label">Reality</div><p>Data has been used to target teens with harmful ads, to discriminate in housing and jobs, and to enable stalking. Everyone benefits from privacy protections — not just people with something to hide.</p></div></div>
+          <div class="myth-item"><div class="myth"><div class="myth-label">Myth</div><p>"Incognito mode keeps me private."</p></div><div class="fact"><div class="fact-label">Reality</div><p>Incognito mode only stops your browser from saving history locally. Your ISP, employer (on their network), and the websites you visit can still see everything you do.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="inner">
+        <p class="section-label">Especially For You</p>
+        <h2 class="section-title">Why Teens Face Unique Privacy Risks</h2>
+        <div class="two-col">
+          <div>
+            <p class="prose">Young people spend more time online than almost any other group — and companies know it. The California Age-Appropriate Design Code Act recognizes that children need <strong>extra protections</strong> because they're still developing the ability to evaluate risks and make fully informed decisions.</p>
+            <p class="prose">Platforms that are "likely to be accessed by children" — including social media, gaming sites, and streaming services — are required to apply high-privacy settings by default and avoid manipulative design features like infinite scroll, autoplay, and reward loops that are built to keep you hooked.</p>
+            <div class="callout"><strong>The Law Says</strong>California defines a "child" as anyone under 18. Platforms cannot profile minors or use their data for targeted advertising without explicit protections in place.</div>
+          </div>
+          <div>
+            <div class="callout navy"><strong>Manipulative Design Features to Watch For</strong>Infinite scroll that never ends. Autoplay that plays the next video before you decide. Notification badges designed to create anxiety. Streaks and rewards that make you feel like you have to log in. These aren't accidents — they're intentional design choices to maximize your time on the platform and therefore, your data.</div>
+            <div class="callout"><strong>Real Consequence</strong>Data collected about you as a teenager can follow you into adulthood — affecting college applications, job searches, insurance rates, and more. Your teen data has a very long shelf life.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-logo" onclick="showPage('home')">Cal<span>Informed</span></div>
+      <div class="footer-links"><a href="#">Instagram</a><a href="#">GitHub</a><a href="#">Twitter</a></div>
+      <div class="footer-copy">© 2025 CalInformed. Informational purposes only. Not legal advice.</div>
+    </footer>
+  </div>
+
+  <!-- ===============================
+       CALIFORNIA PRIVACY LAWS PAGE
+       =============================== -->
+  <div id="page-laws" class="page">
+    <header class="page-hero">
+      <p class="hero-eyebrow">&#x2022; California Privacy Laws &#x2022;</p>
+      <h1>California <em>Privacy Laws</em> — What They Mean for You</h1>
+      <p>California is the most privacy-protective state in the US. Here's a plain-English breakdown of the laws that give you real power over your data.</p>
+    </header>
+
+    <div class="section">
+      <div class="inner">
+        <div class="two-col">
+          <div>
+            <p class="section-label">Why California?</p>
+            <h2 class="section-title">California Leads the Nation on Privacy</h2>
+            <p class="prose">The California Constitution explicitly guarantees a <strong>fundamental right to privacy</strong>. That's not a law — it's in the state's founding document. California has built on that foundation with some of the most comprehensive consumer privacy laws anywhere in the United States, and many of them specifically protect you as a young person.</p>
+            <p class="prose">Because California is so large and influential, many of these protections have ripple effects nationwide — companies often apply California rules to all their users because it's easier than building separate systems.</p>
+          </div>
+          <div>
+            <div class="callout"><strong>California Constitution, Article I, Section 1</strong>"All people are by nature free and independent and have inalienable rights. Among these are enjoying and defending life and liberty… and <strong>pursuing and obtaining safety, happiness, and privacy</strong>."</div>
+            <div class="callout navy"><strong>What This Means for You</strong>You have legally enforceable privacy rights. Companies that collect your data in California must follow specific rules — and you can take action if they don't.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section gray">
+      <div class="inner">
+        <p class="section-label">The Laws Explained</p>
+        <h2 class="section-title">California's Major Privacy Laws — Simply Explained</h2>
+        <p class="section-subtitle">Here are the key laws protecting your data, broken down into plain language.</p>
+        <div class="law-block"><div class="law-tag">CCPA · 2020</div><h3>California Consumer Privacy Act (CCPA)</h3><p>The landmark law that first gave California consumers broad privacy rights. It applies to for-profit businesses that collect personal data from California residents and meet certain thresholds.</p><ul><li>Right to know what personal information is collected about you</li><li>Right to delete personal information (with some exceptions)</li><li>Right to opt out of the sale of your data</li><li>Right to non-discrimination if you exercise these rights</li><li>Businesses must have a "Do Not Sell My Personal Information" link</li></ul></div>
+        <div class="law-block navy"><div class="law-tag">CPRA · 2023</div><h3>California Privacy Rights Act (CPRA)</h3><p>The CPRA expanded the CCPA significantly. It created a new state agency — the California Privacy Protection Agency — dedicated solely to enforcing privacy law.</p><ul><li>Right to correct inaccurate personal information</li><li>Right to limit use of sensitive data (health, race, sexual orientation, precise location, etc.)</li><li>Opt out of sharing data for cross-context behavioral advertising</li><li>Stronger protections for children's data</li><li>Companies must minimize data collection to what's actually necessary</li></ul></div>
+        <div class="law-block green"><div class="law-tag">Age-Appropriate Design Code · 2022</div><h3>California Age-Appropriate Design Code Act (AB 2273)</h3><p>Specifically designed to protect minors online. Any online service "likely to be accessed by children" must follow strict rules — even if it's not specifically a kids' app.</p><ul><li>High privacy settings must be on by default for child users</li><li>No profiling or behavioral advertising targeting minors</li><li>Businesses must conduct a Data Protection Impact Assessment (DPIA)</li><li>No manipulative design features (autoplay, reward systems, streaks)</li><li>Applies to services used by kids ages 0–17, with protections scaled by age group</li></ul></div>
+        <div class="law-block"><div class="law-tag">CalOPPA</div><h3>California Online Privacy Protection Act (CalOPPA)</h3><p>Requires commercial websites and online services to post a clear, conspicuous privacy policy. This was one of the first laws in the US to require privacy policies.</p><ul><li>Privacy policy must be easy to find (linked on homepage)</li><li>Must explain what data is collected and who it's shared with</li><li>Must disclose how the site responds to "Do Not Track" signals</li><li>Must include an effective date and update procedures</li></ul></div>
+        <div class="law-block navy"><div class="law-tag">CalECPA</div><h3>California Electronic Communications Privacy Act (CalECPA)</h3><p>Protects your digital communications from government access. Law enforcement must obtain a warrant before accessing your emails, texts, location data, or device contents.</p><ul><li>Government must get a warrant to read your messages or access your device</li><li>Applies to emails, texts, social media messages, and location data</li><li>You must be notified when your data is accessed (with limited exceptions)</li></ul></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="inner">
+        <p class="section-label">Know Your Rights</p>
+        <h2 class="section-title">Your 6 Rights Under California Law</h2>
+        <p class="section-subtitle">The CCPA and CPRA together give you these six enforceable rights with companies that operate in California.</p>
+        <div class="rights-cards-grid">
+          <div class="right-card"><div class="right-num">1</div><div><h3>Right to Know</h3><p>You can ask a business what personal information it has collected about you, where it came from, how it's used, and who it's shared with. Businesses must respond within 45 days.</p></div></div>
+          <div class="right-card"><div class="right-num">2</div><div><h3>Right to Delete</h3><p>You can request that a business delete your personal information. They must also tell their service providers to delete it. Some exceptions apply.</p></div></div>
+          <div class="right-card"><div class="right-num">3</div><div><h3>Right to Opt Out</h3><p>You can tell businesses not to sell or share your personal data. Look for "Do Not Sell or Share My Personal Information" links, or use a browser with Global Privacy Control (GPC) enabled.</p></div></div>
+          <div class="right-card"><div class="right-num">4</div><div><h3>Right to Correct</h3><p>If a company has wrong information about you — your address, name, or anything else — you can request that they fix it.</p></div></div>
+          <div class="right-card"><div class="right-num">5</div><div><h3>Right to Limit Use</h3><p>For sensitive personal information (health data, precise location, racial/ethnic origin, sexual orientation), you can limit how businesses use and disclose it.</p></div></div>
+          <div class="right-card"><div class="right-num">6</div><div><h3>Right to Non-Discrimination</h3><p>A company cannot deny you service, charge you more, or give you a worse experience just because you exercised your privacy rights.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-banner">
+      <blockquote>"This landmark law secures new privacy rights for California consumers, including the right to know, delete, and opt out of the sale of personal information."</blockquote>
+      <cite>— California Office of the Attorney General on the CCPA</cite>
+    </div>
+
+    <div class="section gray">
+      <div class="inner">
+        <p class="section-label">Take Action</p>
+        <h2 class="section-title">How to Actually Exercise Your Rights</h2>
+        <p class="section-subtitle">Knowing your rights is step one. Here's how to use them in practice.</p>
+        <ul class="steps-list">
+          <li><div class="step-num navy">1</div><div class="step-content"><h4>Find the Company's Privacy Page</h4><p>Look at the bottom of any website for "Privacy Policy" or "Do Not Sell My Personal Information." By law, California-covered businesses must have these links visible.</p></div></li>
+          <li><div class="step-num navy">2</div><div class="step-content"><h4>Submit a Data Access Request</h4><p>Most large companies have an online form to request a copy of your data. You may need to verify your identity. The company has 45 days to respond.</p></div></li>
+          <li><div class="step-num navy">3</div><div class="step-content"><h4>Request Deletion</h4><p>Use the same privacy form to submit a deletion request. The company must delete the data they hold about you and notify their service providers.</p></div></li>
+          <li><div class="step-num navy">4</div><div class="step-content"><h4>Enable Global Privacy Control (GPC)</h4><p>GPC is a browser signal that automatically tells every website you visit not to sell or share your data. It's legally recognized under California law. Use Brave, Firefox with an extension, or DuckDuckGo.</p></div></li>
+          <li><div class="step-num navy">5</div><div class="step-content"><h4>File a Complaint If a Company Won't Comply</h4><p>If a business ignores your request, you can file a complaint with the California Privacy Protection Agency (CPPA) or the California Attorney General's office. Companies can face fines of up to $7,500 per intentional violation.</p></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-logo" onclick="showPage('home')">Cal<span>Informed</span></div>
+      <div class="footer-links"><a href="#">Instagram</a><a href="#">GitHub</a><a href="#">Twitter</a></div>
+      <div class="footer-copy">© 2025 CalInformed. Informational purposes only. Not legal advice.</div>
+    </footer>
+  </div>
+
+  <!-- ===============================
+       PROTECT YOURSELF PAGE
+       =============================== -->
+  <div id="page-protect" class="page">
+    <header class="protect-hero">
+      <p class="hero-eyebrow">&#x2022; Protect Yourself &#x2022;</p>
+      <h1>Protect Yourself <em>Online</em> — Practical Steps That Actually Work</h1>
+      <p>You don't need to be a tech expert to protect your privacy. These steps are quick, free, and make a real difference.</p>
+    </header>
+
+    <div class="section">
+      <div class="inner">
+        <p class="section-label green-label">Start Here</p>
+        <h2 class="section-title">5 Things You Can Do Right Now</h2>
+        <p class="section-subtitle">You can do all of these today, in under an hour, for free.</p>
+        <ul class="steps-list">
+          <li><div class="step-num">1</div><div class="step-content"><h4>Enable Global Privacy Control (GPC) in Your Browser</h4><p>GPC is a browser signal that automatically tells every website you visit "don't sell or share my data." It's legally recognized under California law. Use Brave browser (built-in), or install the Privacy Badger or DuckDuckGo extension on Firefox or Chrome. One setup, permanent protection.</p></div></li>
+          <li><div class="step-num">2</div><div class="step-content"><h4>Review App Permissions on Your Phone</h4><p>Go to Settings → Privacy (iPhone) or Settings → Apps (Android) and look at which apps have access to your location, microphone, camera, and contacts. Revoke anything you don't recognize or didn't actively approve. Most apps don't need your location "always on."</p></div></li>
+          <li><div class="step-num">3</div><div class="step-content"><h4>Use a Strong, Unique Password + a Password Manager</h4><p>Reusing passwords is one of the most dangerous habits online. If one site gets breached, attackers try the same password everywhere. Use a free password manager like Bitwarden to generate and store unique passwords for every site.</p></div></li>
+          <li><div class="step-num">4</div><div class="step-content"><h4>Turn On Two-Factor Authentication (2FA)</h4><p>2FA adds a second step to logins — usually a code sent to your phone. Even if someone has your password, they can't get in without that code. Enable it on your email, social media, and any accounts with personal info.</p></div></li>
+          <li><div class="step-num">5</div><div class="step-content"><h4>Check HaveIBeenPwned.com</h4><p>This free tool tells you if your email address has been found in a known data breach. If you've been breached, change that password immediately on every site where you used it.</p></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section gray">
+      <div class="inner">
+        <p class="section-label green-label">Social Media</p>
+        <h2 class="section-title">Locking Down Your Social Media Privacy</h2>
+        <p class="section-subtitle">Social platforms are built to collect as much data as possible. Here's how to dial it back on the most popular ones.</p>
+        <div class="platform-grid">
+          <div class="platform-card"><h3>Instagram / Threads</h3><ul><li>Set your account to Private</li><li>Go to Settings → Ads → Ad Topics — review and restrict</li><li>Turn off Activity Status so others can't see when you're online</li><li>Disable "Allow others to share your posts to their Stories"</li><li>Revoke third-party app access in Settings → Security</li><li>Under Data &amp; History, view and delete your activity</li></ul></div>
+          <div class="platform-card"><h3>TikTok</h3><ul><li>Set account to Private</li><li>Go to Settings → Privacy → Ads → opt out of personalized ads</li><li>Turn off "Suggest your account to others"</li><li>Disable location access in phone Settings → Apps → TikTok</li><li>Under "Digital Wellbeing," set Screen Time limits</li><li>Request your data under Settings → Privacy → Personalization and Data</li></ul></div>
+          <div class="platform-card"><h3>Snapchat</h3><ul><li>Set "Who can see my location" to "Only Me" or turn on Ghost Mode</li><li>Turn off "Lifestyle &amp; Interests" to limit ad profiling</li><li>Review which friends can contact you and see your story</li><li>In Privacy Controls, turn off "Show me in Quick Add"</li><li>Delete your Snap Map location history under My Data</li></ul></div>
+          <div class="platform-card"><h3>Google Account</h3><ul><li>Visit myaccount.google.com → Data &amp; Privacy</li><li>Turn off Location History, Web &amp; App Activity, and YouTube History</li><li>Set data to auto-delete after 3 months</li><li>Review "Ads personalization" and turn off</li><li>Use Google's Privacy Checkup tool</li><li>Download your data anytime via Google Takeout</li></ul></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="protect-quote-banner">
+      <blockquote>"Arguing that you don't care about privacy because you have nothing to hide is like arguing you don't care about free speech because you have nothing to say."</blockquote>
+      <cite>— Edward Snowden</cite>
+    </div>
+
+    <div class="section">
+      <div class="inner">
+        <p class="section-label green-label">Safe Browsing</p>
+        <h2 class="section-title">Safer Everyday Browsing Habits</h2>
+        <div class="two-col">
+          <div>
+            <ul class="steps-list">
+              <li><div class="step-num purple">1</div><div class="step-content"><h4>Use a Privacy-Focused Browser</h4><p>Brave blocks ads and trackers by default. Firefox with uBlock Origin is also excellent. Both are free. Chrome is convenient but heavily tied to Google's data ecosystem.</p></div></li>
+              <li><div class="step-num purple">2</div><div class="step-content"><h4>Switch Your Default Search Engine</h4><p>DuckDuckGo and Startpage don't track your searches or build a profile on you. Google stores your search history indefinitely and uses it to target you with ads.</p></div></li>
+              <li><div class="step-num purple">3</div><div class="step-content"><h4>Look for HTTPS</h4><p>Before entering personal information on any website, check that the URL starts with https:// (and the padlock icon shows). This encrypts the data between you and the site.</p></div></li>
+              <li><div class="step-num purple">4</div><div class="step-content"><h4>Be Careful on Public Wi-Fi</h4><p>Public Wi-Fi can be intercepted. Avoid logging into sensitive accounts on public networks. If you must, use a VPN to encrypt your connection.</p></div></li>
+            </ul>
+          </div>
+          <div>
+            <div class="callout green-call"><strong>What is a VPN?</strong>A Virtual Private Network encrypts all traffic from your device and routes it through a server elsewhere, hiding your IP address. Free VPNs often collect your data themselves — consider a trusted paid option like Mullvad or ProtonVPN.</div>
+            <div class="callout navy"><strong>Avoid "Data Harvesting" Sites</strong>Sites offering free quizzes, personality tests, or "find out your ancestry" tools often exist solely to collect and sell your data. Before entering any personal info, ask: why does this site need this?</div>
+            <div class="callout"><strong>Use a Separate Email for Sign-Ups</strong>Create a second email address just for website registrations, newsletters, and apps you don't fully trust. This keeps your primary identity separate from your browsing activity.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section gray">
+      <div class="inner">
+        <p class="section-label green-label">Recommended Tools</p>
+        <h2 class="section-title">Free Privacy Tools Worth Using</h2>
+        <p class="section-subtitle">These are well-vetted tools recommended by privacy experts. All have free tiers.</p>
+        <div class="tools-grid">
+          <div class="tool-card"><div class="tool-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><h4>Bitwarden</h4><p>Open-source, free password manager. Generates and stores unique passwords for every site.</p><span class="tool-tag">Free</span></div></div>
+          <div class="tool-card"><div class="tool-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div><h4>Brave Browser</h4><p>Blocks ads and trackers by default. Built-in GPC support. Faster than Chrome.</p><span class="tool-tag">Free</span></div></div>
+          <div class="tool-card"><div class="tool-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div><h4>DuckDuckGo</h4><p>Search engine that doesn't track you or build ad profiles. Has a browser app too.</p><span class="tool-tag">Free</span></div></div>
+          <div class="tool-card"><div class="tool-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div><h4>Privacy Badger</h4><p>Browser extension from EFF that learns to block invisible trackers automatically.</p><span class="tool-tag">Free</span></div></div>
+          <div class="tool-card"><div class="tool-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div><h4>ProtonMail</h4><p>End-to-end encrypted email. Based in Switzerland. Much more private than Gmail.</p><span class="tool-tag">Free tier</span></div></div>
+          <div class="tool-card"><div class="tool-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><h4>Signal</h4><p>End-to-end encrypted messaging. The gold standard for private communication.</p><span class="tool-tag">Free</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-logo" onclick="showPage('home')">Cal<span>Informed</span></div>
+      <div class="footer-links"><a href="#">Instagram</a><a href="#">GitHub</a><a href="#">Twitter</a></div>
+      <div class="footer-copy">© 2025 CalInformed. Informational purposes only. Not legal advice.</div>
+    </footer>
+  </div>
+
+  <!-- ===============================
+       NEWS PAGE
+       =============================== -->
+  <div id="page-news" class="page">
+    <header class="page-hero">
+      <p class="hero-eyebrow">&#x2022; News &amp; Updates &#x2022;</p>
+      <h1>What's Happening in <em>Data Privacy</em> Right Now</h1>
+      <p>AI-powered live news — updated every time you visit. Stories sourced and summarized in real time across California privacy law, teen safety, data breaches, and Big Tech.</p>
+    </header>
+
+    <!-- LIVE NEWS SECTION -->
+    <div class="section">
+      <div class="inner">
+
+        <!-- TOPIC FILTER BUTTONS -->
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px; align-items:center;">
+          <span style="font-family:'Poppins',sans-serif; font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#999;">Filter:</span>
+          <button class="topic-filter active" data-topic="all" onclick="setFilter(this,'all')">All Topics</button>
+          <button class="topic-filter" data-topic="california" onclick="setFilter(this,'california')">California Laws</button>
+          <button class="topic-filter" data-topic="minors" onclick="setFilter(this,'minors')">Teen &amp; Minors</button>
+          <button class="topic-filter" data-topic="breaches" onclick="setFilter(this,'breaches')">Data Breaches</button>
+          <button class="topic-filter" data-topic="bigtech" onclick="setFilter(this,'bigtech')">Big Tech</button>
+        </div>
+
+        <!-- LAST UPDATED + REFRESH -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; flex-wrap:wrap; gap:12px;">
+          <div>
+            <p class="section-label" style="margin-bottom:4px;">Live Feed</p>
+            <h2 class="section-title" style="margin-bottom:0;">Latest Privacy News</h2>
+          </div>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <span id="last-updated" style="font-family:'Poppins',sans-serif; font-size:0.78rem; color:#999;"></span>
+            <button onclick="fetchNews()" id="refresh-btn" style="font-family:'Poppins',sans-serif; font-size:0.82rem; font-weight:600; color:var(--purple); background:rgba(125,60,175,0.08); border:1px solid rgba(125,60,175,0.2); padding:8px 16px; border-radius:8px; cursor:pointer; transition:background 0.2s;">
+              ↻ Refresh
+            </button>
+          </div>
+        </div>
+
+        <!-- LOADING STATE -->
+        <div id="news-loading" style="display:none; text-align:center; padding:60px 20px;">
+          <div class="news-spinner"></div>
+          <p style="font-family:'Poppins',sans-serif; color:#999; margin-top:16px; font-size:0.9rem;">Fetching the latest privacy news...</p>
+        </div>
+
+        <!-- ERROR STATE -->
+        <div id="news-error" style="display:none;">
+          <div class="callout" style="border-left-color:#c0392b; background:rgba(192,57,43,0.05);">
+            <strong style="color:#c0392b;">Couldn't load live news</strong>
+            There was a problem fetching the latest stories. Check your connection and try refreshing.
+          </div>
+        </div>
+
+        <!-- NEWS GRID (populated by JS) -->
+        <div id="news-grid-live" class="news-grid"></div>
+
+      </div>
+    </div>
+
+    <!-- HOT TOPICS — always static, evergreen -->
+    <div class="section gray">
+      <div class="inner">
+        <p class="section-label">Ongoing Debates</p>
+        <h2 class="section-title">The Biggest Privacy Questions Right Now</h2>
+        <p class="section-subtitle">These debates shape the laws of tomorrow — and they affect you directly.</p>
+        <div id="hot-topics-live">
+          <!-- populated by JS -->
+        </div>
+        <div class="callout" style="margin-top:32px;">
+          <strong>Stay Informed</strong>
+          For the most current developments, follow the California Privacy Protection Agency at cppa.ca.gov, the Electronic Frontier Foundation at eff.org, and the California AG's privacy page at oag.ca.gov/privacy.
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-logo" onclick="showPage('home')">Cal<span>Informed</span></div>
+      <div class="footer-links"><a href="#">Instagram</a><a href="#">GitHub</a><a href="#">Twitter</a></div>
+      <div class="footer-copy">© 2025 CalInformed. Informational purposes only. Not legal advice.</div>
+    </footer>
+  </div>
+
+  <!-- ===============================
+       RESOURCES PAGE
+       =============================== -->
+  <div id="page-resources" class="page">
+    <header class="page-hero">
+      <p class="hero-eyebrow">&#x2022; Resources &#x2022;</p>
+      <h1>Official Links, <em>Tools</em>, and Guides to Go Deeper</h1>
+      <p>Everything you need to learn more, take action, and stay informed — all in one place.</p>
+    </header>
+
+    <div class="section">
+      <div class="inner">
+        <p class="section-label">Official Sources</p>
+        <h2 class="section-title">California Government &amp; Legal Resources</h2>
+        <p class="section-subtitle">These are the official sources for California privacy law — straight from the agencies responsible for enforcing it.</p>
+        <div class="resource-list">
+          <div class="resource-item"><div class="resource-icon navy"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="resource-body"><h4>California Privacy Protection Agency (CPPA) <span class="res-tag official">Official</span></h4><p>The state agency responsible for enforcing the CCPA and CPRA. Includes rule updates, enforcement actions, and how to file a complaint if your rights are violated.</p><a href="https://cppa.ca.gov" target="_blank">cppa.ca.gov →</a></div></div>
+          <div class="resource-item"><div class="resource-icon navy"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><div class="resource-body"><h4>California Attorney General — Privacy Page <span class="res-tag official">Official</span></h4><p>Explains your CCPA rights, how to submit a consumer request, and how to file complaints. Includes the full text of the law.</p><a href="https://oag.ca.gov/privacy/ccpa" target="_blank">oag.ca.gov/privacy/ccpa →</a></div></div>
+          <div class="resource-item"><div class="resource-icon navy"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div><div class="resource-body"><h4>California Legislative Information — AB 2273 <span class="res-tag official">Official</span></h4><p>The full text of the California Age-Appropriate Design Code Act, which protects minors' privacy online and restricts manipulative design practices targeting children.</p><a href="https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202120220AB2273" target="_blank">leginfo.legislature.ca.gov →</a></div></div>
+          <div class="resource-item"><div class="resource-icon navy"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="resource-body"><h4>CalLawyers.org — Privacy Law Guide <span class="res-tag official">Legal</span></h4><p>A comprehensive overview of California's full privacy law landscape, written for non-lawyers.</p><a href="https://calawyers.org/section/privacy-law/privacy-law-guide/" target="_blank">calawyers.org →</a></div></div>
+          <div class="resource-item"><div class="resource-icon navy"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div class="resource-body"><h4>FTC — Consumer Protection Resources <span class="res-tag official">Federal</span></h4><p>Federal consumer protection resource. Includes information about scams, data breaches, and how to report companies that misuse your personal information.</p><a href="https://www.ftc.gov" target="_blank">ftc.gov →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section gray">
+      <div class="inner">
+        <p class="section-label">Learn More</p>
+        <h2 class="section-title">Advocacy Organizations &amp; Educational Resources</h2>
+        <p class="section-subtitle">Trusted non-profits and organizations fighting for your digital rights and providing free education.</p>
+        <div class="resource-list">
+          <div class="resource-item"><div class="resource-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="resource-body"><h4>Electronic Frontier Foundation (EFF) <span class="res-tag free">Free</span></h4><p>The leading nonprofit defending digital civil liberties. Offers guides on surveillance, encryption, online rights, and tools like Privacy Badger. Their "Surveillance Self-Defense" guide is essential reading.</p><a href="https://www.eff.org" target="_blank">eff.org →</a></div></div>
+          <div class="resource-item"><div class="resource-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/></svg></div><div class="resource-body"><h4>Consumer Action — CCPA Privacy Rights Survey <span class="res-tag free">Free</span></h4><p>Eye-opening consumer research on how few Californians actually know and use their CCPA rights — including the 51% statistic about deletion requests.</p><a href="https://www.consumer-action.org/downloads/english/CCPA-Privacy-Rights-Survey.pdf" target="_blank">consumer-action.org →</a></div></div>
+          <div class="resource-item"><div class="resource-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="resource-body"><h4>TrustArc — California Age-Appropriate Design Code Explainer <span class="res-tag free">Free</span></h4><p>A clear breakdown of what the California Age-Appropriate Design Code Act means and requires — useful for understanding your rights as a minor.</p><a href="https://trustarc.com/resource/california-age-appropriate-design-code-act/" target="_blank">trustarc.com →</a></div></div>
+          <div class="resource-item"><div class="resource-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="resource-body"><h4>Global Privacy Control (GPC) <span class="res-tag tool">Browser Tool</span></h4><p>The official site for GPC — the browser signal that automatically opts you out of data selling under California law. Learn how to enable it and see which browsers support it.</p><a href="https://globalprivacycontrol.org" target="_blank">globalprivacycontrol.org →</a></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="inner">
+        <p class="section-label">Privacy Tools</p>
+        <h2 class="section-title">Tools to Check &amp; Protect Your Data</h2>
+        <div class="resource-list">
+          <div class="resource-item"><div class="resource-icon green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="resource-body"><h4>Have I Been Pwned? <span class="res-tag free">Free</span></h4><p>Check if your email or phone number has appeared in a known data breach. Enter your email and instantly see which breaches exposed your info. Set up alerts for future breaches.</p><a href="https://haveibeenpwned.com" target="_blank">haveibeenpwned.com →</a></div></div>
+          <div class="resource-item"><div class="resource-icon green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><div class="resource-body"><h4>Bitwarden — Free Password Manager <span class="res-tag free">Free &amp; Open Source</span></h4><p>Generate strong, unique passwords for every site and store them securely. Open source and audited. Available on all devices.</p><a href="https://bitwarden.com" target="_blank">bitwarden.com →</a></div></div>
+          <div class="resource-item"><div class="resource-icon green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div><div class="resource-body"><h4>Privacy Badger (EFF) <span class="res-tag free">Free Browser Extension</span></h4><p>Automatically learns to block invisible trackers as you browse. Gets smarter over time. Available for Chrome and Firefox.</p><a href="https://privacybadger.org" target="_blank">privacybadger.org →</a></div></div>
+          <div class="resource-item"><div class="resource-icon green"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="resource-body"><h4>Brave Browser <span class="res-tag free">Free</span></h4><p>A privacy-first browser that blocks ads and trackers by default and has GPC built in. A direct replacement for Chrome that's also faster.</p><a href="https://brave.com" target="_blank">brave.com →</a></div></div>
+        </div>
+        <div class="callout" style="margin-top:32px;"><strong>A Note on Free VPNs</strong>Many free VPNs make money by logging and selling your browsing data — the opposite of what you want. If you choose to use a VPN, research it carefully. Trusted paid options include Mullvad and ProtonVPN. Both have been independently audited.</div>
+      </div>
+    </div>
+
+    <div class="section gray">
+      <div class="inner">
+        <p class="section-label">Glossary</p>
+        <h2 class="section-title">Key Terms Defined</h2>
+        <p class="section-subtitle">Privacy law comes with a lot of jargon. Here's what the most important terms actually mean.</p>
+        <div class="glossary">
+          <div class="glossary-item"><div class="glossary-term">CCPA</div><div class="glossary-def">California Consumer Privacy Act. A 2020 law giving California residents rights over their personal data, including the right to know, delete, and opt out of data sales.</div></div>
+          <div class="glossary-item"><div class="glossary-term">CPRA</div><div class="glossary-def">California Privacy Rights Act. A 2023 expansion of the CCPA that added new rights (correct, limit use) and created a dedicated enforcement agency (CPPA).</div></div>
+          <div class="glossary-item"><div class="glossary-term">Personal Information (PI)</div><div class="glossary-def">Any data that identifies, relates to, or could reasonably be linked to you. Includes name, email, location, browsing history, purchase history, and much more.</div></div>
+          <div class="glossary-item"><div class="glossary-term">Sensitive Personal Information</div><div class="glossary-def">A special category including health data, precise geolocation, racial/ethnic origin, sexual orientation, financial account details, and biometrics. Comes with extra legal protections under CPRA.</div></div>
+          <div class="glossary-item"><div class="glossary-term">Data Broker</div><div class="glossary-def">A company that collects personal information from many sources and sells it to other businesses or individuals — often without consumers' knowledge.</div></div>
+          <div class="glossary-item"><div class="glossary-term">GPC (Global Privacy Control)</div><div class="glossary-def">A browser signal that automatically tells websites "do not sell or share my personal data." Legally recognized as an opt-out under California law.</div></div>
+          <div class="glossary-item"><div class="glossary-term">DPIA</div><div class="glossary-def">Data Protection Impact Assessment. A formal process companies must complete to identify and reduce risks to children's privacy. Required under California's Age-Appropriate Design Code.</div></div>
+          <div class="glossary-item"><div class="glossary-term">Cookie</div><div class="glossary-def">A small file stored in your browser that tracks information about you across sessions. Third-party cookies track you across different websites, not just the one you're visiting.</div></div>
+          <div class="glossary-item"><div class="glossary-term">Browser Fingerprinting</div><div class="glossary-def">A tracking technique that identifies you based on unique characteristics of your browser and device — without using cookies.</div></div>
+          <div class="glossary-item"><div class="glossary-term">CalOPPA</div><div class="glossary-def">California Online Privacy Protection Act. Requires commercial websites that collect personal info from Californians to post a clear, accessible privacy policy.</div></div>
+          <div class="glossary-item"><div class="glossary-term">Opt-Out vs. Opt-In</div><div class="glossary-def">Opt-out means data collection happens by default and you must actively stop it. Opt-in means you must actively agree before data is collected. Opt-in is stronger protection.</div></div>
+          <div class="glossary-item"><div class="glossary-term">End-to-End Encryption</div><div class="glossary-def">A method of communication where only the sender and recipient can read the messages — not the platform, not the government, not hackers. Used by Signal and WhatsApp.</div></div>
+        </div>
+        <div class="action-box">
+          <h3>Ready to Take Control?</h3>
+          <p>Now that you know the laws, the terms, and the tools — start with one action today. Enable GPC in your browser, review your app permissions, or submit a data request to a company you use.</p>
+          <button class="action-btn" onclick="showPage('protect')">Start Protecting Yourself →</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-logo" onclick="showPage('home')">Cal<span>Informed</span></div>
+      <div class="footer-links"><a href="#">Instagram</a><a href="#">GitHub</a><a href="#">Twitter</a></div>
+      <div class="footer-copy">© 2025 CalInformed. Informational purposes only. Not legal advice.</div>
+    </footer>
+  </div>
+
+  <!-- ===============================
+       JAVASCRIPT — PAGE SWITCHING
+       =============================== -->
+  <script src="app.js"></script>
+</html>
