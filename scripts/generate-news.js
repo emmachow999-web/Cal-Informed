@@ -1,21 +1,20 @@
 // scripts/generate-news.js
-// Uses Google Gemini (free tier) to generate privacy news daily.
+// Uses Groq (free, no credit card needed) to generate privacy news daily.
 // Runs via GitHub Actions and writes a static pages/news.html.
 
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import Groq from 'groq-sdk';
 import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 const today = new Date().toLocaleDateString('en-US', {
   year: 'numeric', month: 'long', day: 'numeric'
 });
 
-// ─── 1. Ask Gemini for news data ─────────────────────────────────────────────
+// ─── 1. Ask Groq for news data ────────────────────────────────────────────────
 
 const prompt = `Today is ${today}. You are a news summarizer for a youth data privacy education website aimed at California teenagers.
 
@@ -116,10 +115,16 @@ Make every article and debate feel fresh, current, and specific to data privacy 
 
 console.log(`Fetching news for ${today}...`);
 
-const result = await model.generateContent(prompt);
-const raw = result.response.text();
-const clean = raw.replace(/```json|```/g, '').trim();
-const { articles, debates } = JSON.parse(clean);
+const completion = await groq.chat.completions.create({
+  model: 'llama-3.3-70b-versatile',
+  messages: [{ role: 'user', content: prompt }],
+  temperature: 0.7,
+  max_tokens: 2000,
+  response_format: { type: 'json_object' },
+});
+
+const raw = completion.choices[0].message.content;
+const { articles, debates } = JSON.parse(raw);
 
 console.log(`Got ${articles.length} articles and ${debates.length} debates.`);
 
