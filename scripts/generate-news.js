@@ -3,7 +3,7 @@
 // Runs via GitHub Actions and writes a static pages/news.html.
 
 import Groq from 'groq-sdk';
-import { writeFileSync } from 'fs';
+import { writeFileSync, mkdirSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -259,5 +259,6 @@ ${debatesHtml}
 </html>`;
 
 const outPath = join(__dirname, '..', 'pages', 'news.html');
+mkdirSync(join(__dirname, '..', 'pages'), { recursive: true });
 writeFileSync(outPath, html, 'utf8');
 console.log(`✅ Written to ${outPath}`);
