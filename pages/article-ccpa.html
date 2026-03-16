@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What the CCPA Means for High Schoolers — CalInformed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --purple: #7D3CAF; --navy: #303778; --cream: #FFFADB; --white: #ffffff;
+      --dark: #1a1a2e; --gray: #f4f1f8; --purple-light: #c9a8e8;
+      --purple-dark: #5a2880; --green: #3d6e57; --shadow: 0 4px 24px rgba(125,60,175,0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Georgia', serif; background-color: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+    /* NAV */
+    .site-nav { display: flex; justify-content: space-between; align-items: center; background-color: var(--navy); padding: 18px 48px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.25); }
+    .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.5rem; color: var(--white); text-decoration: none; }
+    .nav-logo span { color: var(--purple-light); }
+    .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .nav-links a { display: inline-block; color: var(--white); background-color: rgba(125,60,175,0.25); padding: 10px 18px; border-radius: 8px; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); transition: background-color 0.2s, transform 0.15s; }
+    .nav-links a:hover, .nav-links a.active { background-color: var(--purple); color: var(--cream); transform: translateY(-2px); }
+
+    /* PAGE HERO */
+    .page-hero { background: linear-gradient(135deg, var(--navy) 0%, var(--purple-dark) 50%, var(--purple) 100%); color: var(--white); padding: 72px 48px 60px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%); border-radius: 50%; }
+    .hero-eyebrow { font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple-light); margin-bottom: 16px; }
+    .page-hero h1 { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.15; max-width: 760px; margin-bottom: 20px; position: relative; z-index: 1; }
+    .page-hero h1 em { color: var(--purple-light); font-style: normal; }
+    .page-hero > p { font-size: 1.05rem; max-width: 580px; line-height: 1.8; color: rgba(255,255,255,0.85); position: relative; z-index: 1; }
+
+    /* LAYOUT */
+    .section { padding: 72px 48px; }
+    .section.gray { background-color: var(--gray); }
+    .inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label { font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin-bottom: 10px; }
+    .section-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--navy); margin-bottom: 12px; line-height: 1.2; }
+    .section-subtitle { font-size: 1rem; color: #666; line-height: 1.75; margin-bottom: 40px; max-width: 640px; }
+
+    .prose { font-size: 1rem; line-height: 1.85; color: #444; max-width: 720px; }
+    .prose + .prose { margin-top: 18px; }
+    .prose strong { color: var(--navy); }
+
+    /* TWO COL */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* CARDS */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin-top: 36px; }
+    .card { background: var(--white); border-radius: 14px; padding: 28px 26px; box-shadow: var(--shadow); border-top: 4px solid var(--purple); transition: transform 0.22s, box-shadow 0.22s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(125,60,175,0.18); }
+    .card.navy { border-top-color: var(--navy); }
+    .card.green { border-top-color: var(--green); }
+    .card-icon { width: 46px; height: 46px; border-radius: 12px; background: rgba(125,60,175,0.1); display: flex; align-items: center; justify-content: center; color: var(--purple); margin-bottom: 16px; }
+    .card.navy .card-icon { background: rgba(48,55,120,0.1); color: var(--navy); }
+    .card.green .card-icon { background: rgba(61,110,87,0.1); color: var(--green); }
+    .card h3 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--navy); margin-bottom: 8px; }
+    .card p { font-size: 0.91rem; line-height: 1.7; color: #555; }
+
+    /* CALLOUT */
+    .callout { border-left: 4px solid var(--purple); background: rgba(125,60,175,0.06); border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 28px 0; font-size: 0.97rem; line-height: 1.75; color: #444; }
+    .callout strong { display: block; font-family: 'Poppins', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--purple); margin-bottom: 6px; }
+    .callout.navy { border-left-color: var(--navy); background: rgba(48,55,120,0.05); }
+    .callout.navy strong { color: var(--navy); }
+
+    /* QUOTE BANNER */
+    .quote-banner { background: linear-gradient(120deg, var(--navy) 0%, var(--purple-dark) 100%); color: var(--white); padding: 56px 48px; text-align: center; }
+    .quote-banner blockquote { font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-style: italic; max-width: 720px; margin: 0 auto 16px; line-height: 1.65; }
+    .quote-banner cite { font-size: 0.82rem; color: rgba(255,255,255,0.6); font-style: normal; font-family: 'Poppins', sans-serif; }
+
+    /* MYTH/FACT */
+    .myth-grid { display: flex; flex-direction: column; gap: 18px; margin-top: 32px; }
+    .myth-item { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+    .myth-item .myth { background: #fce8e8; padding: 20px 22px; }
+    .myth-item .fact { background: #e8f4f0; padding: 20px 22px; }
+    .myth-item .myth-label { font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #c0392b; margin-bottom: 6px; }
+    .myth-item .fact-label { font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+    .myth-item p { font-size: 0.92rem; line-height: 1.65; color: #333; }
+    @media (max-width: 600px) { .myth-item { grid-template-columns: 1fr; } }
+
+    /* DATA TYPES */
+    .data-types { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 32px; }
+    .data-type { background: var(--white); border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); text-align: center; }
+    .data-type .dt-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .data-type h4 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--navy); margin-bottom: 6px; }
+    .data-type p { font-size: 0.82rem; line-height: 1.6; color: #666; }
+
+    /* FOOTER */
+    .site-footer { display: flex; justify-content: space-between; align-items: center; background-color: var(--dark); color: rgba(255,255,255,0.6); padding: 28px 48px; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.2rem; color: var(--white); text-decoration: none; }
+    .footer-logo span { color: var(--purple-light); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--purple-light); }
+    .footer-copy { font-family: 'Poppins', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.4); width: 100%; text-align: center; margin-top: 8px; }
+
+    @media (max-width: 700px) {
+      .site-nav { flex-direction: column; gap: 16px; padding: 20px 24px; }
+      .page-hero { padding: 56px 24px 48px; }
+      .section { padding: 56px 24px; }
+      .quote-banner { padding: 48px 24px; }
+      .site-footer { flex-direction: column; text-align: center; padding: 28px 24px; }
+      .footer-links { justify-content: center; }
+    }
+    </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-logo" onclick="location.href='../index.html'">Cal<span>Informed</span></div>
+    <div class="nav-links">
+      <a href="what-is-data-privacy.html" class="nav-btn">What is Data Privacy?</a>
+      <a href="california-privacy-laws.html" class="nav-btn">California Privacy Laws</a>
+      <a href="protect-yourself.html" class="nav-btn">Protect Yourself</a>
+      <a href="news.html" class="nav-btn">News</a>
+      <a href="resources.html" class="nav-btn">Resources</a>
+      <a href="articles.html" class="nav-btn active">Articles</a>
+      <a href="about.html" class="nav-btn">About</a>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <p class="hero-eyebrow">&#x2022; California Laws &#x2022;</p>
+    <h1>What the CCPA Actually Means <em>for High School Students</em></h1>
+    <p>Six powerful rights over your data. Most California teens have never heard of them. Here's what they are — and how to use them.</p>
+  </header>
+
+  <div class="section">
+    <div class="inner" style="max-width:760px;">
+      <a href="articles.html" style="display:inline-block;font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:600;color:var(--purple);background:rgba(125,60,175,0.08);border:1px solid rgba(125,60,175,0.2);padding:8px 16px;border-radius:8px;text-decoration:none;margin-bottom:36px;">← Back to Articles</a>
+      <p style="font-size:0.82rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#999;margin-bottom:32px;">By [Your Name] &nbsp;·&nbsp; February 2026 &nbsp;·&nbsp; 7 min read</p>
+      <div class="prose">
+        <p>In 2018, California passed the California Consumer Privacy Act — one of the strongest data privacy laws in the world. Expanded by the CPRA in 2023, it gives you six specific legal rights over your personal data. Most teenagers have no idea these rights exist.</p>
+        <h3 style="font-family:'Poppins',sans-serif;color:var(--navy);margin-top:40px;">Who Is Protected</h3>
+        <p>The CCPA protects all California residents including minors. If you live in California, these rights apply to you regardless of age. The law covers almost every major app, social media platform, and website you use.</p>
+        <h3 style="font-family:'Poppins',sans-serif;color:var(--navy);margin-top:40px;">Your Six Rights</h3>
+        <div class="callout" style="margin:24px 0;"><strong>Right 1: The Right to Know</strong> You can ask any covered company what personal data they have about you, why they collected it, and who they've shared it with. They have 45 days to respond.</div>
+        <div class="callout navy" style="margin:24px 0;"><strong>Right 2: The Right to Access</strong> You can request a copy of the specific personal information a company holds about you — not just a summary, but the actual data.</div>
+        <div class="callout green-call" style="margin:24px 0;"><strong>Right 3: The Right to Delete</strong> You can ask a company to delete your personal data. They must comply within 45 days, with limited exceptions.</div>
+        <div class="callout" style="margin:24px 0;border-left-color:#c0392b;background:rgba(192,57,43,0.05);"><strong style="color:#c0392b;">Right 4: The Right to Opt Out of Sale</strong> If a company sells your data, you can tell them to stop. Under the CPRA this extends to sharing for targeted advertising.</div>
+        <div class="callout" style="margin:24px 0;border-left-color:var(--purple-dark);"><strong>Right 5: The Right to Correct</strong> If a company has inaccurate information about you, you can ask them to fix it.</div>
+        <div class="callout navy" style="margin:24px 0;"><strong>Right 6: The Right to Non-Discrimination</strong> A company cannot punish you for exercising your privacy rights — no denied services, higher prices, or worse experiences.</div>
+        <h3 style="font-family:'Poppins',sans-serif;color:var(--navy);margin-top:40px;">Extra Protections for Minors</h3>
+        <p>The CCPA has extra protections for people under 16. Companies cannot sell or share the data of users under 16 without explicit opt-in consent. For users under 13, a parent or guardian must give consent.</p>
+        <div class="callout green-call" style="margin-top:36px;">
+          <strong>Global Privacy Control</strong>
+          Install the Global Privacy Control browser extension (globalprivacycontrol.org). It automatically sends a legally binding opt-out signal to every California-covered website you visit — the most efficient way to exercise your opt-out right at scale.
+        </div>
+      </div>
+      <div style="margin-top:48px;padding-top:32px;border-top:2px solid rgba(125,60,175,0.15);display:flex;gap:16px;flex-wrap:wrap;">
+        <a href="article-deletion.html" class="btn-primary" style="font-size:0.88rem;text-decoration:none;">Next: How to Request Deletion →</a>
+        <a href="articles.html" style="font-family:'Poppins',sans-serif;font-size:0.88rem;font-weight:600;color:var(--purple);border:2px solid var(--purple);padding:12px 24px;border-radius:10px;text-decoration:none;">← All Articles</a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-logo" onclick="location.href='../index.html'">Cal<span>Informed</span></div>
+    <div class="footer-links"><a href="#">Instagram</a><a href="#">GitHub</a><a href="#">Twitter</a></div>
+    <div class="footer-copy">© 2025 CalInformed. Informational purposes only. Not legal advice.</div>
+  </footer>
+</body>
+</html>

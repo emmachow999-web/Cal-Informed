@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Protect Yourself — DataRights</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --purple: #7D3CAF; --navy: #303778; --cream: #FFFADB; --white: #ffffff;
+      --dark: #1a1a2e; --gray: #f4f1f8; --purple-light: #c9a8e8;
+      --purple-dark: #5a2880; --green: #3d6e57; --shadow: 0 4px 24px rgba(125,60,175,0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Georgia', serif; background-color: var(--cream); color: var(--dark); overflow-x: hidden; }
+    .site-nav { display: flex; justify-content: space-between; align-items: center; background-color: var(--navy); padding: 18px 48px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.25); }
+    .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.5rem; color: var(--white); text-decoration: none; }
+    .nav-logo span { color: var(--purple-light); }
+    .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .nav-links a { display: inline-block; color: var(--white); background-color: rgba(125,60,175,0.25); padding: 10px 18px; border-radius: 8px; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); transition: background-color 0.2s, transform 0.15s; }
+    .nav-links a:hover, .nav-links a.active { background-color: var(--purple); color: var(--cream); transform: translateY(-2px); }
+    .page-hero { background: linear-gradient(135deg, var(--navy) 0%, #2e6b4f 80%, var(--green) 100%); color: var(--white); padding: 72px 48px 60px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%); border-radius: 50%; }
+    .hero-eyebrow { font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #a8e8cc; margin-bottom: 16px; }
+    .page-hero h1 { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.15; max-width: 760px; margin-bottom: 20px; position: relative; z-index: 1; }
+    .page-hero h1 em { color: #a8e8cc; font-style: normal; }
+    .page-hero > p { font-size: 1.05rem; max-width: 580px; line-height: 1.8; color: rgba(255,255,255,0.85); position: relative; z-index: 1; }
+    .section { padding: 72px 48px; }
+    .section.gray { background-color: var(--gray); }
+    .inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--green); margin-bottom: 10px; }
+    .section-label.purple { color: var(--purple); }
+    .section-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--navy); margin-bottom: 12px; }
+    .section-subtitle { font-size: 1rem; color: #666; line-height: 1.75; margin-bottom: 40px; max-width: 640px; }
+    .prose { font-size: 1rem; line-height: 1.85; color: #444; max-width: 720px; }
+    .callout { border-left: 4px solid var(--green); background: rgba(61,110,87,0.06); border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 20px 0; font-size: 0.97rem; line-height: 1.75; color: #444; }
+    .callout strong { display: block; font-family: 'Poppins', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--green); margin-bottom: 6px; }
+    .callout.purple { border-left-color: var(--purple); background: rgba(125,60,175,0.06); }
+    .callout.purple strong { color: var(--purple); }
+    .callout.navy { border-left-color: var(--navy); background: rgba(48,55,120,0.05); }
+    .callout.navy strong { color: var(--navy); }
+
+    /* STEPS */
+    .steps-list { list-style: none; display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+    .steps-list li { display: flex; gap: 18px; align-items: flex-start; background: var(--white); border-radius: 12px; padding: 20px 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); transition: transform 0.18s; }
+    .steps-list li:hover { transform: translateX(4px); }
+    .step-num { min-width: 36px; height: 36px; border-radius: 50%; background: var(--green); color: var(--white); font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.88rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-num.purple { background: var(--purple); }
+    .step-num.navy { background: var(--navy); }
+    .step-content h4 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.98rem; color: var(--navy); margin-bottom: 4px; }
+    .step-content p { font-size: 0.9rem; line-height: 1.65; color: #555; }
+
+    /* PLATFORM CARDS */
+    .platform-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-top: 36px; }
+    .platform-card { background: var(--white); border-radius: 14px; padding: 28px 26px; box-shadow: var(--shadow); border-top: 4px solid var(--green); transition: transform 0.22s; }
+    .platform-card:hover { transform: translateY(-5px); }
+    .platform-card h3 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--navy); margin-bottom: 12px; }
+    .platform-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .platform-card ul li { font-size: 0.9rem; line-height: 1.6; color: #555; padding-left: 18px; position: relative; }
+    .platform-card ul li::before { content: '✓'; position: absolute; left: 0; color: var(--green); font-weight: bold; font-size: 0.85rem; }
+
+    /* TOOLS GRID */
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 36px; }
+    .tool-card { background: var(--white); border-radius: 12px; padding: 24px 22px; box-shadow: 0 2px 14px rgba(0,0,0,0.07); display: flex; gap: 16px; align-items: flex-start; }
+    .tool-icon { min-width: 42px; height: 42px; border-radius: 10px; background: rgba(61,110,87,0.1); display: flex; align-items: center; justify-content: center; color: var(--green); flex-shrink: 0; }
+    .tool-card h4 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 4px; }
+    .tool-card p { font-size: 0.85rem; line-height: 1.6; color: #666; }
+    .tool-tag { font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; background: rgba(61,110,87,0.12); color: var(--green); display: inline-block; margin-top: 6px; }
+    .tool-tag.free { background: rgba(48,55,120,0.1); color: var(--navy); }
+
+    /* QUOTE */
+    .quote-banner { background: linear-gradient(120deg, #2e6b4f 0%, var(--navy) 100%); color: var(--white); padding: 56px 48px; text-align: center; }
+    .quote-banner blockquote { font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-style: italic; max-width: 720px; margin: 0 auto 16px; line-height: 1.65; }
+    .quote-banner cite { font-size: 0.82rem; color: rgba(255,255,255,0.6); font-style: normal; font-family: 'Poppins', sans-serif; }
+
+    /* TWO COL */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+    .site-footer { display: flex; justify-content: space-between; align-items: center; background-color: var(--dark); color: rgba(255,255,255,0.6); padding: 28px 48px; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.2rem; color: var(--white); text-decoration: none; }
+    .footer-logo span { color: var(--purple-light); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--purple-light); }
+    .footer-copy { font-family: 'Poppins', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.4); width: 100%; text-align: center; margin-top: 8px; }
+    @media (max-width: 700px) {
+      .site-nav { flex-direction: column; gap: 16px; padding: 20px 24px; }
+      .page-hero, .section { padding: 56px 24px; }
+      .quote-banner { padding: 48px 24px; }
+      .site-footer { flex-direction: column; text-align: center; padding: 28px 24px; }
+      .footer-links { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="../index.html" class="nav-logo">Data<span>Rights</span></a>
+  <div class="nav-links">
+    <a href="what-is-data-privacy.html">What is Data Privacy?</a>
+    <a href="california-privacy-laws.html">California Privacy Laws</a>
+    <a href="protect-yourself.html" class="active">Protect Yourself</a>
+    <a href="news.html">News</a>
+    <a href="resources.html">Resources</a>
+    <a href="articles.html">Articles</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <p class="hero-eyebrow">&#x2022; Protect Yourself &#x2022;</p>
+  <h1>Protect Yourself <em>Online</em> — Practical Steps That Actually Work</h1>
+  <p>You don't need to be a tech expert to protect your privacy. These steps are quick, free, and make a real difference.</p>
+</header>
+
+<!-- START SIMPLE -->
+<div class="section">
+  <div class="inner">
+    <p class="section-label">Start Here</p>
+    <h2 class="section-title">5 Things You Can Do Right Now</h2>
+    <p class="section-subtitle">You can do all of these today, in under an hour, for free.</p>
+    <ul class="steps-list">
+      <li>
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Enable Global Privacy Control (GPC) in Your Browser</h4>
+          <p>GPC is a browser signal that automatically tells every website you visit "don't sell or share my data." It's legally recognized under California law. Use Brave browser (built-in), or install the Privacy Badger or DuckDuckGo extension on Firefox or Chrome. One setup, permanent protection.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Review App Permissions on Your Phone</h4>
+          <p>Go to Settings → Privacy (iPhone) or Settings → Apps (Android) and look at which apps have access to your location, microphone, camera, and contacts. Revoke anything you don't recognize or didn't actively approve. Most apps don't need your location "always on."</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Use a Strong, Unique Password + a Password Manager</h4>
+          <p>Reusing passwords is one of the most dangerous habits online. If one site gets breached, attackers try the same password everywhere. Use a free password manager like Bitwarden to generate and store unique passwords for every site.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Turn On Two-Factor Authentication (2FA)</h4>
+          <p>2FA adds a second step to logins — usually a code sent to your phone. Even if someone has your password, they can't get in without that code. Enable it on your email, social media, and any accounts with personal info. Use an authenticator app (like Google Authenticator) instead of SMS for stronger security.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>Check HaveIBeenPwned.com</h4>
+          <p>This free tool tells you if your email address has been found in a known data breach. If you've been breached, change that password immediately on every site where you used it. Set up alerts for future breaches.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- SOCIAL MEDIA -->
+<div class="section gray">
+  <div class="inner">
+    <p class="section-label">Social Media</p>
+    <h2 class="section-title">Locking Down Your Social Media Privacy</h2>
+    <p class="section-subtitle">Social platforms are built to collect as much data as possible. Here's how to dial it back on the most popular ones.</p>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <h3>Instagram / Threads</h3>
+        <ul>
+          <li>Set your account to Private</li>
+          <li>Go to Settings → Ads → Ad Topics — review and restrict</li>
+          <li>Turn off Activity Status so others can't see when you're online</li>
+          <li>Disable "Allow others to share your posts to their Stories"</li>
+          <li>Revoke third-party app access in Settings → Security</li>
+          <li>Under Data & History, view and delete your activity</li>
+        </ul>
+      </div>
+      <div class="platform-card">
+        <h3>TikTok</h3>
+        <ul>
+          <li>Set account to Private</li>
+          <li>Go to Settings → Privacy → Ads → opt out of personalized ads</li>
+          <li>Turn off "Suggest your account to others"</li>
+          <li>Disable location access in phone Settings → Apps → TikTok</li>
+          <li>Under "Digital Wellbeing," set Screen Time limits</li>
+          <li>Request your data under Settings → Privacy → Personalization and Data</li>
+        </ul>
+      </div>
+      <div class="platform-card">
+        <h3>Snapchat</h3>
+        <ul>
+          <li>Set "Who can see my location" to "Only Me" or turn off Ghost Mode</li>
+          <li>Turn off "Lifestyle & Interests" to limit ad profiling</li>
+          <li>Review which friends can contact you and see your story</li>
+          <li>In Privacy Controls, turn off "Show me in Quick Add"</li>
+          <li>Delete your Snap Map location history under My Data</li>
+        </ul>
+      </div>
+      <div class="platform-card">
+        <h3>Google Account</h3>
+        <ul>
+          <li>Visit myaccount.google.com → Data & Privacy</li>
+          <li>Turn off Location History, Web & App Activity, and YouTube History</li>
+          <li>Set data to auto-delete after 3 months</li>
+          <li>Review "Ads personalization" and turn off</li>
+          <li>Use Google's Privacy Checkup tool</li>
+          <li>Download your data anytime via Google Takeout</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE -->
+<div class="quote-banner">
+  <blockquote>"Arguing that you don't care about privacy because you have nothing to hide is like arguing you don't care about free speech because you have nothing to say."</blockquote>
+  <cite>— Edward Snowden</cite>
+</div>
+
+<!-- BROWSING HABITS -->
+<div class="section">
+  <div class="inner">
+    <p class="section-label">Safe Browsing</p>
+    <h2 class="section-title">Safer Everyday Browsing Habits</h2>
+    <div class="two-col">
+      <div>
+        <ul class="steps-list">
+          <li>
+            <div class="step-num purple">1</div>
+            <div class="step-content">
+              <h4>Use a Privacy-Focused Browser</h4>
+              <p>Brave blocks ads and trackers by default. Firefox with uBlock Origin is also excellent. Both are free. Chrome is convenient but heavily tied to Google's data ecosystem.</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-num purple">2</div>
+            <div class="step-content">
+              <h4>Switch Your Default Search Engine</h4>
+              <p>DuckDuckGo and Startpage don't track your searches or build a profile on you. Google stores your search history indefinitely and uses it to target you with ads.</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-num purple">3</div>
+            <div class="step-content">
+              <h4>Look for HTTPS</h4>
+              <p>Before entering personal information on any website, check that the URL starts with https:// (and the padlock icon shows). This encrypts the data between you and the site so others can't intercept it.</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-num purple">4</div>
+            <div class="step-content">
+              <h4>Be Careful on Public Wi-Fi</h4>
+              <p>Public Wi-Fi (coffee shops, airports, schools) can be intercepted. Avoid logging into sensitive accounts on public networks. If you must, use a VPN to encrypt your connection.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <div class="callout">
+          <strong>What is a VPN?</strong>
+          A Virtual Private Network encrypts all traffic from your device and routes it through a server elsewhere, hiding your IP address and making it much harder to track your browsing. Free VPNs often collect your data themselves — consider a trusted paid option like Mullvad or ProtonVPN.
+        </div>
+        <div class="callout navy" style="margin-top: 0;">
+          <strong>Avoid "Data Harvesting" Sites</strong>
+          Sites offering free quizzes, personality tests, or "find out your ancestry" tools often exist solely to collect and sell your data. Before entering any personal info, ask: why does this site need this? What are they giving me in return?
+        </div>
+        <div class="callout" style="margin-top: 0; border-left-color: var(--purple); background: rgba(125,60,175,0.06);">
+          <strong style="color: var(--purple);">Use a Separate Email for Sign-Ups</strong>
+          Create a second email address just for website registrations, newsletters, and apps you don't fully trust. This keeps your primary inbox and identity separate from your browsing activity.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<div class="section gray">
+  <div class="inner">
+    <p class="section-label">Recommended Tools</p>
+    <h2 class="section-title">Free Privacy Tools Worth Using</h2>
+    <p class="section-subtitle">These are well-vetted tools recommended by privacy experts. All have free tiers.</p>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <h4>Bitwarden</h4>
+          <p>Open-source, free password manager. Generates and stores unique passwords for every site.</p>
+          <span class="tool-tag free">Free</span>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div>
+          <h4>Brave Browser</h4>
+          <p>Blocks ads and trackers by default. Built-in GPC support. Faster than Chrome.</p>
+          <span class="tool-tag free">Free</span>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div>
+          <h4>DuckDuckGo</h4>
+          <p>Search engine that doesn't track you or build ad profiles. Has a browser app too.</p>
+          <span class="tool-tag free">Free</span>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div>
+          <h4>Privacy Badger</h4>
+          <p>Browser extension from EFF that learns to block invisible trackers automatically.</p>
+          <span class="tool-tag free">Free</span>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div>
+          <h4>ProtonMail</h4>
+          <p>End-to-end encrypted email. Based in Switzerland. Free plan available. Much more private than Gmail.</p>
+          <span class="tool-tag free">Free tier</span>
+        </div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div>
+          <h4>Signal</h4>
+          <p>End-to-end encrypted messaging app. The gold standard for private communication. Free.</p>
+          <span class="tool-tag free">Free</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <a href="../index.html" class="footer-logo">Data<span>Rights</span></a>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">GitHub</a>
+    <a href="#">Twitter</a>
+  </div>
+  <div class="footer-copy">© 2025 DataRights. Informational purposes only. Not legal advice.</div>
+</footer>
+
+</body>
+</html>

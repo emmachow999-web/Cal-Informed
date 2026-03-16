@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resources — DataRights</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --purple: #7D3CAF; --navy: #303778; --cream: #FFFADB; --white: #ffffff;
+      --dark: #1a1a2e; --gray: #f4f1f8; --purple-light: #c9a8e8;
+      --purple-dark: #5a2880; --green: #3d6e57; --shadow: 0 4px 24px rgba(125,60,175,0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Georgia', serif; background-color: var(--cream); color: var(--dark); overflow-x: hidden; }
+    .site-nav { display: flex; justify-content: space-between; align-items: center; background-color: var(--navy); padding: 18px 48px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.25); }
+    .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.5rem; color: var(--white); text-decoration: none; }
+    .nav-logo span { color: var(--purple-light); }
+    .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .nav-links a { display: inline-block; color: var(--white); background-color: rgba(125,60,175,0.25); padding: 10px 18px; border-radius: 8px; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); transition: background-color 0.2s, transform 0.15s; }
+    .nav-links a:hover, .nav-links a.active { background-color: var(--purple); color: var(--cream); transform: translateY(-2px); }
+    .page-hero { background: linear-gradient(135deg, var(--navy) 0%, var(--purple-dark) 50%, var(--purple) 100%); color: var(--white); padding: 72px 48px 60px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%); border-radius: 50%; }
+    .hero-eyebrow { font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple-light); margin-bottom: 16px; }
+    .page-hero h1 { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.15; max-width: 760px; margin-bottom: 20px; position: relative; z-index: 1; }
+    .page-hero h1 em { color: var(--purple-light); font-style: normal; }
+    .page-hero > p { font-size: 1.05rem; max-width: 580px; line-height: 1.8; color: rgba(255,255,255,0.85); position: relative; z-index: 1; }
+    .section { padding: 72px 48px; }
+    .section.gray { background-color: var(--gray); }
+    .inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin-bottom: 10px; }
+    .section-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--navy); margin-bottom: 12px; }
+    .section-subtitle { font-size: 1rem; color: #666; line-height: 1.75; margin-bottom: 40px; max-width: 640px; }
+
+    /* RESOURCE LIST */
+    .resource-list { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+    .resource-item { background: var(--white); border-radius: 13px; padding: 22px 26px; box-shadow: 0 2px 14px rgba(0,0,0,0.07); display: flex; gap: 20px; align-items: flex-start; transition: transform 0.18s, box-shadow 0.18s; }
+    .resource-item:hover { transform: translateX(5px); box-shadow: 0 6px 24px rgba(125,60,175,0.12); }
+    .resource-icon { min-width: 46px; height: 46px; border-radius: 11px; background: rgba(125,60,175,0.1); display: flex; align-items: center; justify-content: center; color: var(--purple); flex-shrink: 0; }
+    .resource-icon.navy { background: rgba(48,55,120,0.1); color: var(--navy); }
+    .resource-icon.green { background: rgba(61,110,87,0.1); color: var(--green); }
+    .resource-body h4 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1rem; color: var(--navy); margin-bottom: 5px; }
+    .resource-body p { font-size: 0.88rem; line-height: 1.65; color: #555; margin-bottom: 8px; }
+    .resource-body a { font-family: 'Poppins', sans-serif; font-size: 0.82rem; font-weight: 600; color: var(--purple); text-decoration: none; display: inline-flex; align-items: center; gap: 4px; transition: color 0.15s; }
+    .resource-body a:hover { color: var(--purple-dark); }
+    .resource-tag { font-family: 'Poppins', sans-serif; font-size: 0.68rem; font-weight: 700; padding: 3px 10px; border-radius: 20px; display: inline-block; margin-left: 8px; background: rgba(125,60,175,0.1); color: var(--purple); }
+    .resource-tag.official { background: rgba(48,55,120,0.1); color: var(--navy); }
+    .resource-tag.tool { background: rgba(61,110,87,0.1); color: var(--green); }
+    .resource-tag.free { background: rgba(39,174,96,0.12); color: #27ae60; }
+
+    /* GLOSSARY */
+    .glossary { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 32px; }
+    .glossary-item { background: var(--white); border-radius: 10px; padding: 20px 22px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); border-top: 3px solid var(--purple); }
+    .glossary-item:nth-child(3n+2) { border-top-color: var(--navy); }
+    .glossary-item:nth-child(3n+3) { border-top-color: var(--green); }
+    .glossary-term { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 7px; }
+    .glossary-def { font-size: 0.88rem; line-height: 1.65; color: #555; }
+
+    /* TAKE ACTION BOX */
+    .action-box { background: linear-gradient(135deg, var(--navy) 0%, var(--purple-dark) 100%); border-radius: 20px; padding: 48px 40px; text-align: center; color: var(--white); margin-top: 48px; }
+    .action-box h3 { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 1.6rem; margin-bottom: 14px; }
+    .action-box p { font-size: 1rem; line-height: 1.75; color: rgba(255,255,255,0.82); max-width: 560px; margin: 0 auto 28px; }
+    .action-btn { display: inline-block; background: var(--purple-light); color: var(--navy); padding: 14px 32px; border-radius: 50px; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+    .action-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.3); }
+
+    .callout { border-left: 4px solid var(--purple); background: rgba(125,60,175,0.06); border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 24px 0; font-size: 0.97rem; line-height: 1.75; color: #444; }
+    .callout strong { display: block; font-family: 'Poppins', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--purple); margin-bottom: 6px; }
+
+    .site-footer { display: flex; justify-content: space-between; align-items: center; background-color: var(--dark); color: rgba(255,255,255,0.6); padding: 28px 48px; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.2rem; color: var(--white); text-decoration: none; }
+    .footer-logo span { color: var(--purple-light); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--purple-light); }
+    .footer-copy { font-family: 'Poppins', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.4); width: 100%; text-align: center; margin-top: 8px; }
+    @media (max-width: 700px) {
+      .site-nav { flex-direction: column; gap: 16px; padding: 20px 24px; }
+      .page-hero, .section { padding: 56px 24px; }
+      .site-footer { flex-direction: column; text-align: center; padding: 28px 24px; }
+      .footer-links { justify-content: center; }
+      .action-box { padding: 36px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="../index.html" class="nav-logo">Data<span>Rights</span></a>
+  <div class="nav-links">
+    <a href="what-is-data-privacy.html">What is Data Privacy?</a>
+    <a href="california-privacy-laws.html">California Privacy Laws</a>
+    <a href="protect-yourself.html">Protect Yourself</a>
+    <a href="news.html">News</a>
+    <a href="resources.html" class="active">Resources</a>
+    <a href="articles.html">Articles</a>
+    <a href="about.html">About</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <p class="hero-eyebrow">&#x2022; Resources &#x2022;</p>
+  <h1>Official Links, <em>Tools</em>, and Guides to Go Deeper</h1>
+  <p>Everything you need to learn more, take action, and stay informed — all in one place.</p>
+</header>
+
+<!-- OFFICIAL GOVERNMENT RESOURCES -->
+<div class="section">
+  <div class="inner">
+    <p class="section-label">Official Sources</p>
+    <h2 class="section-title">California Government & Legal Resources</h2>
+    <p class="section-subtitle">These are the official sources for California privacy law — straight from the agencies responsible for enforcing it.</p>
+    <div class="resource-list">
+      <div class="resource-item">
+        <div class="resource-icon navy">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="resource-body">
+          <h4>California Privacy Protection Agency (CPPA) <span class="resource-tag official">Official</span></h4>
+          <p>The state agency responsible for enforcing the CCPA and CPRA. Includes rule updates, enforcement actions, and how to file a complaint if your rights are violated.</p>
+          <a href="https://cppa.ca.gov" target="_blank">cppa.ca.gov →</a>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon navy">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div class="resource-body">
+          <h4>California Attorney General — Privacy Page <span class="resource-tag official">Official</span></h4>
+          <p>Explains your CCPA rights, how to submit a consumer request, and how to file complaints. Includes the full text of the law.</p>
+          <a href="https://oag.ca.gov/privacy/ccpa" target="_blank">oag.ca.gov/privacy/ccpa →</a>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon navy">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        </div>
+        <div class="resource-body">
+          <h4>California Legislative Information — AB 2273 (Age-Appropriate Design Code) <span class="resource-tag official">Official</span></h4>
+          <p>The full text of the California Age-Appropriate Design Code Act, which protects minors' privacy online and restricts manipulative design practices targeting children.</p>
+          <a href="https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202120220AB2273" target="_blank">leginfo.legislature.ca.gov →</a>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon navy">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="resource-body">
+          <h4>CalLawyers.org — Privacy Law Guide <span class="resource-tag official">Legal</span></h4>
+          <p>A comprehensive overview of California's full privacy law landscape — from consumer privacy to children's privacy to health data and beyond, written for non-lawyers.</p>
+          <a href="https://calawyers.org/section/privacy-law/privacy-law-guide/" target="_blank">calawyers.org →</a>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon navy">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.59 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div class="resource-body">
+          <h4>FTC — Fair Debt Collection Practices Act <span class="resource-tag official">Federal</span></h4>
+          <p>Federal consumer protection resource. Also includes information about scams, data breaches, and how to report companies that misuse your personal information.</p>
+          <a href="https://www.ftc.gov/legal-library/browse/rules/fair-debt-collection-practices-act-text" target="_blank">ftc.gov →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADVOCACY & EDUCATION -->
+<div class="section gray">
+  <div class="inner">
+    <p class="section-label">Learn More</p>
+    <h2 class="section-title">Advocacy Organizations & Educational Resources</h2>
+    <p class="section-subtitle">Trusted non-profits and organizations fighting for your digital rights and providing free education.</p>
+    <div class="resource-list">
+      <div class="resource-item">
+        <div class="resource-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="resource-body">
+          <h4>Electronic Frontier Foundation (EFF) <span class="resource-tag free">Free</span></h4>
+          <p>The leading nonprofit defending digital civil liberties. Offers guides on surveillance, encryption, online rights, and tools like Privacy Badger. Their "Surveillance Self-Defense" guide is essential reading.</p>
+          <a href="https://www.eff.org" target="_blank">eff.org →</a>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/></svg>
+        </div>
+        <div class="resource-body">
+          <h4>Consumer Action — CCPA Privacy Rights Survey <span class="resource-tag free">Free</span></h4>
+          <p>Eye-opening consumer research on how few Californians actually know and use their CCPA rights — including the 51% statistic about deletion requests. Includes practical guidance for consumers.</p>
+          <a href="https://www.consumer-action.org/downloads/english/CCPA-Privacy-Rights-Survey.pdf" target="_blank">consumer-action.org →</a>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="resource-body">
+          <h4>TrustArc — California Age-Appropriate Design Code Explainer <span class="resource-tag free">Free</span></h4>
+          <p>A clear breakdown of what the California Age-Appropriate Design Code Act means and requires — useful for understanding your rights as a minor, or explaining the law to others.</p>
+          <a href="https://trustarc.com/resource/california-age-appropriate-design-code-act/" target="_blank">trustarc.com →</a>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="resource-body">
+          <h4>Global Privacy Control (GPC) <span class="resource-tag tool">Browser Tool</span></h4>
+          <p>The official site for GPC — the browser signal that automatically opts you out of data selling under California law. Learn how to enable it and see which browsers support it.</p>
+          <a href="https://globalprivacycontrol.org" target="_blank">globalprivacycontrol.org →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRIVACY TOOLS -->
+<div class="section">
+  <div class="inner">
+    <p class="section-label">Privacy Tools</p>
+    <h2 class="section-title">Tools to Check & Protect Your Data</h2>
+    <div class="resource-list">
+      <div class="resource-item">
+        <div class="resource-icon green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <div class="resource-body">
+          <h4>Have I Been Pwned? <span class="resource-tag free">Free</span></h4>
+          <p>Check if your email or phone number has appeared in a known data breach. Enter your email and instantly see which breaches exposed your info. Set up alerts for future breaches.</p>
+          <a href="https://haveibeenpwned.com" target="_blank">haveibeenpwned.com →</a>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="resource-body">
+          <h4>Bitwarden — Free Password Manager <span class="resource-tag free">Free & Open Source</span></h4>
+          <p>Generate strong, unique passwords for every site and store them securely. Open source and audited. Available on all devices.</p>
+          <a href="https://bitwarden.com" target="_blank">bitwarden.com →</a>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+        </div>
+        <div class="resource-body">
+          <h4>Privacy Badger (EFF) <span class="resource-tag free">Free Browser Extension</span></h4>
+          <p>Automatically learns to block invisible trackers as you browse. Gets smarter over time. Available for Chrome and Firefox.</p>
+          <a href="https://privacybadger.org" target="_blank">privacybadger.org →</a>
+        </div>
+      </div>
+      <div class="resource-item">
+        <div class="resource-icon green">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <div class="resource-body">
+          <h4>Brave Browser <span class="resource-tag free">Free</span></h4>
+          <p>A privacy-first browser that blocks ads and trackers by default and has GPC built in. A direct replacement for Chrome that's also faster.</p>
+          <a href="https://brave.com" target="_blank">brave.com →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 32px;">
+      <strong>A Note on Free VPNs</strong>
+      Many free VPNs make money by logging and selling your browsing data — the opposite of what you want. If you choose to use a VPN, research it carefully. Trusted paid options include Mullvad and ProtonVPN. Both have been independently audited.
+    </div>
+  </div>
+</div>
+
+<!-- GLOSSARY -->
+<div class="section gray">
+  <div class="inner">
+    <p class="section-label">Glossary</p>
+    <h2 class="section-title">Key Terms Defined</h2>
+    <p class="section-subtitle">Privacy law comes with a lot of jargon. Here's what the most important terms actually mean.</p>
+    <div class="glossary">
+      <div class="glossary-item">
+        <div class="glossary-term">CCPA</div>
+        <div class="glossary-def">California Consumer Privacy Act. A 2020 law giving California residents rights over their personal data, including the right to know, delete, and opt out of data sales.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">CPRA</div>
+        <div class="glossary-def">California Privacy Rights Act. A 2023 expansion of the CCPA that added new rights (correct, limit use) and created a dedicated enforcement agency (CPPA).</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Personal Information (PI)</div>
+        <div class="glossary-def">Any data that identifies, relates to, or could reasonably be linked to you. Includes name, email, location, browsing history, purchase history, and much more.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Sensitive Personal Information</div>
+        <div class="glossary-def">A special category including health data, precise geolocation, racial/ethnic origin, sexual orientation, financial account details, and biometrics. Comes with extra legal protections under CPRA.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Data Broker</div>
+        <div class="glossary-def">A company that collects personal information from many sources and sells it to other businesses or individuals — often without consumers' knowledge.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">GPC (Global Privacy Control)</div>
+        <div class="glossary-def">A browser signal that automatically tells websites "do not sell or share my personal data." Legally recognized as an opt-out under California law.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">DPIA</div>
+        <div class="glossary-def">Data Protection Impact Assessment. A formal process companies must complete to identify and reduce risks to children's privacy. Required under California's Age-Appropriate Design Code.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Cookie</div>
+        <div class="glossary-def">A small file stored in your browser that tracks information about you across sessions. Third-party cookies track you across different websites, not just the one you're visiting.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Browser Fingerprinting</div>
+        <div class="glossary-def">A tracking technique that identifies you based on unique characteristics of your browser and device (fonts, screen size, plugins) — without using cookies.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">CalOPPA</div>
+        <div class="glossary-def">California Online Privacy Protection Act. Requires commercial websites that collect personal info from Californians to post a clear, accessible privacy policy.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">Opt-Out vs. Opt-In</div>
+        <div class="glossary-def">Opt-out means data collection happens by default and you must actively stop it. Opt-in means you must actively agree before data is collected. Opt-in is stronger protection.</div>
+      </div>
+      <div class="glossary-item">
+        <div class="glossary-term">End-to-End Encryption</div>
+        <div class="glossary-def">A method of communication where only the sender and recipient can read the messages — not the platform, not the government, not hackers. Used by Signal and WhatsApp.</div>
+      </div>
+    </div>
+
+    <div class="action-box">
+      <h3>Ready to Take Control?</h3>
+      <p>Now that you know the laws, the terms, and the tools — start with one action today. Enable GPC in your browser, review your app permissions, or submit a data request to a company you use.</p>
+      <a href="protect-yourself.html" class="action-btn">Start Protecting Yourself →</a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <a href="../index.html" class="footer-logo">Data<span>Rights</span></a>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">GitHub</a>
+    <a href="#">Twitter</a>
+  </div>
+  <div class="footer-copy">© 2025 DataRights. Informational purposes only. Not legal advice.</div>
+</footer>
+
+</body>
+</html>
