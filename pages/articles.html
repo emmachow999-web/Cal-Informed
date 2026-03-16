@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articles — CalInformed</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --purple: #7D3CAF; --navy: #303778; --cream: #FFFADB; --white: #ffffff;
+      --dark: #1a1a2e; --gray: #f4f1f8; --purple-light: #c9a8e8;
+      --purple-dark: #5a2880; --green: #3d6e57; --shadow: 0 4px 24px rgba(125,60,175,0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Georgia', serif; background-color: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+    /* NAV */
+    .site-nav { display: flex; justify-content: space-between; align-items: center; background-color: var(--navy); padding: 18px 48px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.25); }
+    .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.5rem; color: var(--white); text-decoration: none; }
+    .nav-logo span { color: var(--purple-light); }
+    .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .nav-links a { display: inline-block; color: var(--white); background-color: rgba(125,60,175,0.25); padding: 10px 18px; border-radius: 8px; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); transition: background-color 0.2s, transform 0.15s; }
+    .nav-links a:hover, .nav-links a.active { background-color: var(--purple); color: var(--cream); transform: translateY(-2px); }
+
+    /* PAGE HERO */
+    .page-hero { background: linear-gradient(135deg, var(--navy) 0%, var(--purple-dark) 50%, var(--purple) 100%); color: var(--white); padding: 72px 48px 60px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%); border-radius: 50%; }
+    .hero-eyebrow { font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple-light); margin-bottom: 16px; }
+    .page-hero h1 { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.15; max-width: 760px; margin-bottom: 20px; position: relative; z-index: 1; }
+    .page-hero h1 em { color: var(--purple-light); font-style: normal; }
+    .page-hero > p { font-size: 1.05rem; max-width: 580px; line-height: 1.8; color: rgba(255,255,255,0.85); position: relative; z-index: 1; }
+
+    /* LAYOUT */
+    .section { padding: 72px 48px; }
+    .section.gray { background-color: var(--gray); }
+    .inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label { font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin-bottom: 10px; }
+    .section-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--navy); margin-bottom: 12px; line-height: 1.2; }
+    .section-subtitle { font-size: 1rem; color: #666; line-height: 1.75; margin-bottom: 40px; max-width: 640px; }
+
+    .prose { font-size: 1rem; line-height: 1.85; color: #444; max-width: 720px; }
+    .prose + .prose { margin-top: 18px; }
+    .prose strong { color: var(--navy); }
+
+    /* TWO COL */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* CARDS */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin-top: 36px; }
+    .card { background: var(--white); border-radius: 14px; padding: 28px 26px; box-shadow: var(--shadow); border-top: 4px solid var(--purple); transition: transform 0.22s, box-shadow 0.22s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(125,60,175,0.18); }
+    .card.navy { border-top-color: var(--navy); }
+    .card.green { border-top-color: var(--green); }
+    .card-icon { width: 46px; height: 46px; border-radius: 12px; background: rgba(125,60,175,0.1); display: flex; align-items: center; justify-content: center; color: var(--purple); margin-bottom: 16px; }
+    .card.navy .card-icon { background: rgba(48,55,120,0.1); color: var(--navy); }
+    .card.green .card-icon { background: rgba(61,110,87,0.1); color: var(--green); }
+    .card h3 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--navy); margin-bottom: 8px; }
+    .card p { font-size: 0.91rem; line-height: 1.7; color: #555; }
+
+    /* CALLOUT */
+    .callout { border-left: 4px solid var(--purple); background: rgba(125,60,175,0.06); border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 28px 0; font-size: 0.97rem; line-height: 1.75; color: #444; }
+    .callout strong { display: block; font-family: 'Poppins', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--purple); margin-bottom: 6px; }
+    .callout.navy { border-left-color: var(--navy); background: rgba(48,55,120,0.05); }
+    .callout.navy strong { color: var(--navy); }
+
+    /* QUOTE BANNER */
+    .quote-banner { background: linear-gradient(120deg, var(--navy) 0%, var(--purple-dark) 100%); color: var(--white); padding: 56px 48px; text-align: center; }
+    .quote-banner blockquote { font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-style: italic; max-width: 720px; margin: 0 auto 16px; line-height: 1.65; }
+    .quote-banner cite { font-size: 0.82rem; color: rgba(255,255,255,0.6); font-style: normal; font-family: 'Poppins', sans-serif; }
+
+    /* MYTH/FACT */
+    .myth-grid { display: flex; flex-direction: column; gap: 18px; margin-top: 32px; }
+    .myth-item { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+    .myth-item .myth { background: #fce8e8; padding: 20px 22px; }
+    .myth-item .fact { background: #e8f4f0; padding: 20px 22px; }
+    .myth-item .myth-label { font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #c0392b; margin-bottom: 6px; }
+    .myth-item .fact-label { font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+    .myth-item p { font-size: 0.92rem; line-height: 1.65; color: #333; }
+    @media (max-width: 600px) { .myth-item { grid-template-columns: 1fr; } }
+
+    /* DATA TYPES */
+    .data-types { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 32px; }
+    .data-type { background: var(--white); border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); text-align: center; }
+    .data-type .dt-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .data-type h4 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--navy); margin-bottom: 6px; }
+    .data-type p { font-size: 0.82rem; line-height: 1.6; color: #666; }
+
+    /* FOOTER */
+    .site-footer { display: flex; justify-content: space-between; align-items: center; background-color: var(--dark); color: rgba(255,255,255,0.6); padding: 28px 48px; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.2rem; color: var(--white); text-decoration: none; }
+    .footer-logo span { color: var(--purple-light); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--purple-light); }
+    .footer-copy { font-family: 'Poppins', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.4); width: 100%; text-align: center; margin-top: 8px; }
+
+    @media (max-width: 700px) {
+      .site-nav { flex-direction: column; gap: 16px; padding: 20px 24px; }
+      .page-hero { padding: 56px 24px 48px; }
+      .section { padding: 56px 24px; }
+      .quote-banner { padding: 48px 24px; }
+      .site-footer { flex-direction: column; text-align: center; padding: 28px 24px; }
+      .footer-links { justify-content: center; }
+    }
+    </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-logo" onclick="location.href='../index.html'">Cal<span>Informed</span></div>
+    <div class="nav-links">
+      <a href="what-is-data-privacy.html" class="nav-btn">What is Data Privacy?</a>
+      <a href="california-privacy-laws.html" class="nav-btn">California Privacy Laws</a>
+      <a href="protect-yourself.html" class="nav-btn">Protect Yourself</a>
+      <a href="news.html" class="nav-btn">News</a>
+      <a href="resources.html" class="nav-btn">Resources</a>
+      <a href="articles.html" class="nav-btn active">Articles</a>
+      <a href="about.html" class="nav-btn">About</a>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <p class="hero-eyebrow">&#x2022; Original Analysis &#x2022;</p>
+    <h1>Student-Written <em>Deep Dives</em> into Data Privacy</h1>
+    <p>Real explainers, real analysis — written by teens, for teens. No jargon, no paywalls.</p>
+  </header>
+
+  <div class="section">
+    <div class="inner">
+      <p class="section-label">Featured Articles</p>
+      <h2 class="section-title">Read Our Latest</h2>
+      <div class="cards-grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:28px;margin-top:36px;">
+
+        <a href="article-tiktok.html" style="text-decoration:none;" class="card" style="padding:0;overflow:hidden;">
+          <div style="background:linear-gradient(135deg,#1a1a2e,#8B008B);padding:28px 24px 20px;border-radius:14px 14px 0 0;">
+            <span style="font-family:'Poppins',sans-serif;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.7);">Big Tech</span>
+            <h3 style="color:#fff;font-size:1.1rem;margin-top:8px;margin-bottom:0;">How TikTok Collects Your Data — And What It Does With It</h3>
+          </div>
+          <div style="padding:20px 24px;">
+            <p style="font-size:0.9rem;color:#555;">Every scroll, pause, and rewatch tells TikTok something about you. Here's exactly what data the app collects and what your rights are under California law.</p>
+            <span style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:700;color:var(--purple);">Read Article →</span>
+          </div>
+        </a>
+
+        <a href="article-ccpa.html" style="text-decoration:none;" class="card" style="padding:0;overflow:hidden;">
+          <div style="background:linear-gradient(135deg,var(--navy),var(--purple-dark));padding:28px 24px 20px;border-radius:14px 14px 0 0;">
+            <span style="font-family:'Poppins',sans-serif;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.7);">California Laws</span>
+            <h3 style="color:#fff;font-size:1.1rem;margin-top:8px;margin-bottom:0;">What the CCPA Actually Means for High School Students</h3>
+          </div>
+          <div style="padding:20px 24px;">
+            <p style="font-size:0.9rem;color:#555;">Six powerful rights over your data. Most teens have never heard of them. Here's what they are and how to use them.</p>
+            <span style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:700;color:var(--purple);">Read Article →</span>
+          </div>
+        </a>
+
+        <a href="article-deletion.html" style="text-decoration:none;" class="card" style="padding:0;overflow:hidden;">
+          <div style="background:linear-gradient(135deg,var(--green),#1a3a2a);padding:28px 24px 20px;border-radius:14px 14px 0 0;">
+            <span style="font-family:'Poppins',sans-serif;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.7);">Take Action</span>
+            <h3 style="color:#fff;font-size:1.1rem;margin-top:8px;margin-bottom:0;">How to Request Deletion of Your Data — A Step-by-Step Guide</h3>
+          </div>
+          <div style="padding:20px 24px;">
+            <p style="font-size:0.9rem;color:#555;">Under California law you have the right to make companies delete your personal data. Here's exactly how to do it, platform by platform.</p>
+            <span style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:700;color:var(--purple);">Read Article →</span>
+          </div>
+        </a>
+
+        <a href="article-ai.html" style="text-decoration:none;" class="card" style="padding:0;overflow:hidden;">
+          <div style="background:linear-gradient(135deg,#2d1b4e,var(--purple));padding:28px 24px 20px;border-radius:14px 14px 0 0;">
+            <span style="font-family:'Poppins',sans-serif;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,0.7);">AI &amp; Privacy</span>
+            <h3 style="color:#fff;font-size:1.1rem;margin-top:8px;margin-bottom:0;">How AI Chatbots Store Your Conversations — And What That Means</h3>
+          </div>
+          <div style="padding:20px 24px;">
+            <p style="font-size:0.9rem;color:#555;">You told a chatbot something personal. Where did that go? AI companies keep your conversations longer than you think.</p>
+            <span style="font-family:'Poppins',sans-serif;font-size:0.82rem;font-weight:700;color:var(--purple);">Read Article →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-logo" onclick="location.href='../index.html'">Cal<span>Informed</span></div>
+    <div class="footer-links"><a href="#">Instagram</a><a href="#">GitHub</a><a href="#">Twitter</a></div>
+    <div class="footer-copy">© 2025 CalInformed. Informational purposes only. Not legal advice.</div>
+  </footer>
+</body>
+</html>

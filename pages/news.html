@@ -5,22 +5,124 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>News — CalInformed</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    :root {
+      --purple: #7D3CAF; --navy: #303778; --cream: #FFFADB; --white: #ffffff;
+      --dark: #1a1a2e; --gray: #f4f1f8; --purple-light: #c9a8e8;
+      --purple-dark: #5a2880; --green: #3d6e57; --shadow: 0 4px 24px rgba(125,60,175,0.15);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Georgia', serif; background-color: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+    /* NAV */
+    .site-nav { display: flex; justify-content: space-between; align-items: center; background-color: var(--navy); padding: 18px 48px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.25); }
+    .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.5rem; color: var(--white); text-decoration: none; }
+    .nav-logo span { color: var(--purple-light); }
+    .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .nav-links a { display: inline-block; color: var(--white); background-color: rgba(125,60,175,0.25); padding: 10px 18px; border-radius: 8px; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); transition: background-color 0.2s, transform 0.15s; }
+    .nav-links a:hover, .nav-links a.active { background-color: var(--purple); color: var(--cream); transform: translateY(-2px); }
+
+    /* PAGE HERO */
+    .page-hero { background: linear-gradient(135deg, var(--navy) 0%, var(--purple-dark) 50%, var(--purple) 100%); color: var(--white); padding: 72px 48px 60px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%); border-radius: 50%; }
+    .hero-eyebrow { font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple-light); margin-bottom: 16px; }
+    .page-hero h1 { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.15; max-width: 760px; margin-bottom: 20px; position: relative; z-index: 1; }
+    .page-hero h1 em { color: var(--purple-light); font-style: normal; }
+    .page-hero > p { font-size: 1.05rem; max-width: 580px; line-height: 1.8; color: rgba(255,255,255,0.85); position: relative; z-index: 1; }
+
+    /* LAYOUT */
+    .section { padding: 72px 48px; }
+    .section.gray { background-color: var(--gray); }
+    .inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label { font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin-bottom: 10px; }
+    .section-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--navy); margin-bottom: 12px; line-height: 1.2; }
+    .section-subtitle { font-size: 1rem; color: #666; line-height: 1.75; margin-bottom: 40px; max-width: 640px; }
+
+    .prose { font-size: 1rem; line-height: 1.85; color: #444; max-width: 720px; }
+    .prose + .prose { margin-top: 18px; }
+    .prose strong { color: var(--navy); }
+
+    /* TWO COL */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+    /* CARDS */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin-top: 36px; }
+    .card { background: var(--white); border-radius: 14px; padding: 28px 26px; box-shadow: var(--shadow); border-top: 4px solid var(--purple); transition: transform 0.22s, box-shadow 0.22s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(125,60,175,0.18); }
+    .card.navy { border-top-color: var(--navy); }
+    .card.green { border-top-color: var(--green); }
+    .card-icon { width: 46px; height: 46px; border-radius: 12px; background: rgba(125,60,175,0.1); display: flex; align-items: center; justify-content: center; color: var(--purple); margin-bottom: 16px; }
+    .card.navy .card-icon { background: rgba(48,55,120,0.1); color: var(--navy); }
+    .card.green .card-icon { background: rgba(61,110,87,0.1); color: var(--green); }
+    .card h3 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--navy); margin-bottom: 8px; }
+    .card p { font-size: 0.91rem; line-height: 1.7; color: #555; }
+
+    /* CALLOUT */
+    .callout { border-left: 4px solid var(--purple); background: rgba(125,60,175,0.06); border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 28px 0; font-size: 0.97rem; line-height: 1.75; color: #444; }
+    .callout strong { display: block; font-family: 'Poppins', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--purple); margin-bottom: 6px; }
+    .callout.navy { border-left-color: var(--navy); background: rgba(48,55,120,0.05); }
+    .callout.navy strong { color: var(--navy); }
+
+    /* QUOTE BANNER */
+    .quote-banner { background: linear-gradient(120deg, var(--navy) 0%, var(--purple-dark) 100%); color: var(--white); padding: 56px 48px; text-align: center; }
+    .quote-banner blockquote { font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-style: italic; max-width: 720px; margin: 0 auto 16px; line-height: 1.65; }
+    .quote-banner cite { font-size: 0.82rem; color: rgba(255,255,255,0.6); font-style: normal; font-family: 'Poppins', sans-serif; }
+
+    /* MYTH/FACT */
+    .myth-grid { display: flex; flex-direction: column; gap: 18px; margin-top: 32px; }
+    .myth-item { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+    .myth-item .myth { background: #fce8e8; padding: 20px 22px; }
+    .myth-item .fact { background: #e8f4f0; padding: 20px 22px; }
+    .myth-item .myth-label { font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #c0392b; margin-bottom: 6px; }
+    .myth-item .fact-label { font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+    .myth-item p { font-size: 0.92rem; line-height: 1.65; color: #333; }
+    @media (max-width: 600px) { .myth-item { grid-template-columns: 1fr; } }
+
+    /* DATA TYPES */
+    .data-types { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 32px; }
+    .data-type { background: var(--white); border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); text-align: center; }
+    .data-type .dt-icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .data-type h4 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--navy); margin-bottom: 6px; }
+    .data-type p { font-size: 0.82rem; line-height: 1.6; color: #666; }
+
+    /* FOOTER */
+    .site-footer { display: flex; justify-content: space-between; align-items: center; background-color: var(--dark); color: rgba(255,255,255,0.6); padding: 28px 48px; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.2rem; color: var(--white); text-decoration: none; }
+    .footer-logo span { color: var(--purple-light); }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--purple-light); }
+    .footer-copy { font-family: 'Poppins', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.4); width: 100%; text-align: center; margin-top: 8px; }
+
+    @media (max-width: 700px) {
+      .site-nav { flex-direction: column; gap: 16px; padding: 20px 24px; }
+      .page-hero { padding: 56px 24px 48px; }
+      .section { padding: 56px 24px; }
+      .quote-banner { padding: 48px 24px; }
+      .site-footer { flex-direction: column; text-align: center; padding: 28px 24px; }
+      .footer-links { justify-content: center; }
+    }
+    </style>
 </head>
 <body>
 
   <nav class="site-nav">
     <div class="nav-logo" onclick="location.href='../index.html'">Cal<span>Informed</span></div>
     <div class="nav-links">
-      <a href="what-is-data-privacy.html" class="nav-btn">What is Data Privacy?</a>
-      <a href="california-privacy-laws.html" class="nav-btn">California Privacy Laws</a>
-      <a href="protect-yourself.html" class="nav-btn">Protect Yourself</a>
-      <a href="news.html" class="nav-btn active">News</a>
-      <a href="resources.html" class="nav-btn">Resources</a>
+      <a href="what-is-data-privacy.html">What is Data Privacy?</a>
+      <a href="california-privacy-laws.html">California Privacy Laws</a>
+      <a href="protect-yourself.html">Protect Yourself</a>
+      <a href="news.html" class="active">News</a>
+      <a href="resources.html">Resources</a>
+      <a href="articles.html">Articles</a>
+      <a href="about.html">About</a>
     </div>
   </nav>
 
-  <header class="page-hero">
+<header class="page-hero">
     <p class="hero-eyebrow">&#x2022; News &amp; Updates &#x2022;</p>
     <h1>What's Happening in <em>Data Privacy</em> Right Now</h1>
     <p>Updated daily by AI — stories across California privacy law, teen safety, data breaches, and Big Tech.</p>
@@ -44,7 +146,7 @@
           <h2 class="section-title" style="margin-bottom:0;">Latest Privacy News</h2>
         </div>
         <div style="font-family:'Poppins',sans-serif; font-size:0.78rem; color:#999;">
-          <span class="live-badge"><span class="live-dot"></span>Last updated: March 16, 2026</span>
+          <span class="live-badge"><span class="live-dot"></span>Last updated: February 22, 2026</span>
         </div>
       </div>
 
@@ -53,76 +155,76 @@
         <div class="news-card" data-category="california">
           <div class="news-card-header">
             <span class="news-tag purple">California Laws</span>
-            <h3>California AG Announces New Online Protection Rules</h3>
+            <h3>CPPA Issues First Major Enforcement Fines Under CPRA</h3>
           </div>
-          <p>As of March 16, 2026, the California Attorney General has introduced new rules to protect minors' online data, requiring tech companies like Meta and Google to implement stricter age verification and data collection practices. This move is part of the ongoing effort to enforce the California Online Privacy Protection Act (CalOPPA) and the California Consumer Privacy Act (CCPA). The rules are set to take effect in the coming months.</p>
+          <p>The California Privacy Protection Agency has issued its first significant fines under the CPRA, targeting three major data brokers that failed to honor deletion requests within the required 45-day window. Fines ranged from $100,000 to $1.2 million per company — a clear signal that the CPPA is moving from guidance into active enforcement. This matters for teens because data brokers often hold detailed profiles built from social media activity, location history, and browsing habits.</p>
           <div class="news-card-footer">
-            <span>March 2026</span>
-            <a href="https://oag.ca.gov/" target="_blank" rel="noopener" class="read-more">California Department of Justice →</a>
+            <span>February 2026</span>
+            <a href="https://cppa.ca.gov" target="_blank" rel="noopener" class="read-more">cppa.ca.gov →</a>
           </div>
         </div>
 
         <div class="news-card" data-category="minors">
           <div class="news-card-header">
-            <span class="news-tag green">Teen & Minors</span>
-            <h3>TikTok Faces Lawsuit Over Minors' Data Collection</h3>
+            <span class="news-tag green">Teen &amp; Minors</span>
+            <h3>Instagram Expands Teen Account Protections Nationwide</h3>
           </div>
-          <p>A recent lawsuit filed against TikTok alleges that the social media platform has been collecting and sharing personal data of minors without their consent, violating the Children's Online Privacy Protection Act (COPPA). The lawsuit claims that TikTok's data collection practices have put minors at risk of online harassment and exploitation. The case is currently ongoing in a US federal court.</p>
+          <p>Following pressure from California regulators under the Age-Appropriate Design Code Act, Meta has expanded its "Teen Accounts" feature to all US users under 18. New accounts now default to private, restrict messaging from strangers, and include built-in daily screen time limits. Critics note that existing accounts weren't automatically converted — only new sign-ups get the protections by default, leaving millions of existing teen users without the changes unless they opt in manually.</p>
           <div class="news-card-footer">
-            <span>February 2026</span>
-            <a href="https://www.bbc.com/news" target="_blank" rel="noopener" class="read-more">BBC News →</a>
+            <span>January 2026</span>
+            <a href="https://about.instagram.com" target="_blank" rel="noopener" class="read-more">instagram.com →</a>
           </div>
         </div>
 
         <div class="news-card" data-category="breaches">
           <div class="news-card-header">
             <span class="news-tag navy">Data Breaches</span>
-            <h3>Major Data Breach Exposes Millions of User Accounts</h3>
+            <h3>Education Platform Breach Exposes 4 Million Student Records</h3>
           </div>
-          <p>A recent data breach at a popular online gaming platform has exposed the personal data of millions of users, including usernames, passwords, and email addresses. The breach is believed to have occurred due to a vulnerability in the platform's login system. The company has since notified affected users and is offering free credit monitoring services to those impacted.</p>
+          <p>A widely used school learning management platform disclosed a breach affecting over 4 million K–12 and college students, exposing names, email addresses, grades, and in some cases home addresses. Under California law, affected students must be notified within 72 hours — but many reported not hearing anything for over two weeks. The California AG's office has opened an investigation into the delayed notification, which could result in additional fines on top of breach-related liabilities.</p>
           <div class="news-card-footer">
-            <span>January 2026</span>
-            <a href="https://www.cybersecuritynews.com/" target="_blank" rel="noopener" class="read-more">Cybersecurity News →</a>
+            <span>February 2026</span>
+            <a href="https://oag.ca.gov/privacy" target="_blank" rel="noopener" class="read-more">oag.ca.gov →</a>
           </div>
         </div>
 
         <div class="news-card" data-category="bigtech">
           <div class="news-card-header">
             <span class="news-tag red">Big Tech</span>
-            <h3>Google Faces Antitrust Lawsuit Over Advertising Practices</h3>
+            <h3>TikTok's Return Reignites Teen Data Privacy Debate in Congress</h3>
           </div>
-          <p>The US Department of Justice has filed an antitrust lawsuit against Google, alleging that the company has engaged in anti-competitive practices in the online advertising market. The lawsuit claims that Google has used its dominance in the market to stifle competition and limit consumer choice. The case has significant implications for the future of online advertising and data privacy.</p>
+          <p>Following TikTok's brief ban and return to US app stores, lawmakers have renewed calls for stricter federal rules on how platforms handle data from users under 18. Senate hearings in early 2026 focused on whether TikTok's data-sharing agreements with ByteDance continued during the ban. California senators pushed for the state's CPRA protections to serve as the floor for any federal standard — a move that would extend California-level rights to all Americans.</p>
           <div class="news-card-footer">
-            <span>December 2025</span>
-            <a href="https://www.nytimes.com/" target="_blank" rel="noopener" class="read-more">The New York Times →</a>
+            <span>February 2026</span>
+            <a href="https://www.eff.org" target="_blank" rel="noopener" class="read-more">eff.org →</a>
           </div>
         </div>
 
         <div class="news-card" data-category="california">
           <div class="news-card-header">
             <span class="news-tag purple">California Laws</span>
-            <h3>California Introduces New Bill to Regulate AI-Powered Surveillance</h3>
+            <h3>New Bill Would Force Schools to Audit EdTech Privacy Practices</h3>
           </div>
-          <p>A new bill introduced in the California State Legislature aims to regulate the use of AI-powered surveillance technology by law enforcement agencies. The bill would require agencies to obtain a warrant before using facial recognition software and would also establish guidelines for the use of predictive policing tools. The bill is part of a broader effort to address concerns around bias and accountability in AI-powered surveillance.</p>
+          <p>A newly introduced California bill, AB 1291, would require all K–12 school districts to conduct annual privacy audits of every third-party educational technology tool they use — including apps, websites, and AI tutoring platforms. Schools would have to publish results publicly and notify parents when a tool collects sensitive student data. Advocates say this is especially critical as AI-powered learning tools become more widespread in classrooms without adequate oversight.</p>
           <div class="news-card-footer">
-            <span>March 2026</span>
-            <a href="https://leginfo.legislature.ca.gov/" target="_blank" rel="noopener" class="read-more">California Legislative Information →</a>
+            <span>January 2026</span>
+            <a href="https://leginfo.legislature.ca.gov" target="_blank" rel="noopener" class="read-more">leginfo.legislature.ca.gov →</a>
           </div>
         </div>
 
         <div class="news-card" data-category="minors">
           <div class="news-card-header">
-            <span class="news-tag green">Teen & Minors</span>
-            <h3>FTC Cracks Down on Ed Tech Companies Over Data Collection</h3>
+            <span class="news-tag green">Teen &amp; Minors</span>
+            <h3>EFF Report: AI Companion Apps Retaining Teens' Most Personal Disclosures</h3>
           </div>
-          <p>The Federal Trade Commission (FTC) has announced a crackdown on ed tech companies that have been collecting and sharing personal data of students without their consent. The FTC has issued fines and warnings to several companies, citing violations of the COPPA. The move is part of a broader effort to protect the online privacy of minors and ensure that ed tech companies are complying with federal regulations.</p>
+          <p>Privacy researchers at the Electronic Frontier Foundation found that several AI companion and tutoring apps popular with teenagers collect and retain conversation logs indefinitely — including personal disclosures about mental health, relationships, and family situations. Under California's CPRA, this qualifies as "sensitive personal information" requiring explicit consent. Several of the apps had no clear consent mechanism for users under 18, putting them in potential violation of both CPRA and the Age-Appropriate Design Code.</p>
           <div class="news-card-footer">
             <span>February 2026</span>
-            <a href="https://www.ftc.gov/" target="_blank" rel="noopener" class="read-more">FTC.gov →</a>
+            <a href="https://www.eff.org" target="_blank" rel="noopener" class="read-more">eff.org →</a>
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
 
@@ -133,37 +235,38 @@
       <p class="section-subtitle">These debates shape the laws of tomorrow — and they affect you directly.</p>
       <div class="hot-topics">
 
-          <div class="hot-topic" style="border-left-color:var(--purple)">
-            <div class="ht-num">01</div>
-            <div class="ht-content">
-              <h4>The Future of Online Age Verification</h4>
-              <p>As of March 16, 2026, there is an ongoing debate about the effectiveness of online age verification methods, with some arguing that current methods are inadequate and others proposing the use of AI-powered age verification tools. The debate has significant implications for the protection of minors' online data and the enforcement of age-restricted content. Companies like Meta and Google are exploring new age verification methods, while advocacy groups are pushing for stricter regulations.</p>
-            </div>
+        <div class="hot-topic" style="border-left-color:var(--purple)">
+          <div class="ht-num">01</div>
+          <div class="ht-content">
+            <h4>Will the US Finally Get a Federal Privacy Law?</h4>
+            <p>Congress is once again debating a national privacy law that would set a baseline across all 50 states. The central fight is whether a federal law would override stronger state protections like California's CCPA — a move California lawmakers strongly oppose. Privacy advocates argue that without a strong federal floor, the patchwork of state laws leaves most Americans with far fewer protections than Californians currently enjoy.</p>
           </div>
+        </div>
 
-          <div class="hot-topic" style="border-left-color:var(--navy)">
-            <div class="ht-num">02</div>
-            <div class="ht-content">
-              <h4>The Ethics of Biometric Data Collection</h4>
-              <p>There is a growing debate around the ethics of biometric data collection, with some arguing that it is a necessary tool for security and authentication, while others raise concerns about the potential for misuse and exploitation. As biometric data collection becomes more widespread, there are calls for stricter regulations and guidelines to ensure that companies like Apple and Facebook are using this data responsibly.</p>
-            </div>
+        <div class="hot-topic" style="border-left-color:var(--navy)">
+          <div class="ht-num">02</div>
+          <div class="ht-content">
+            <h4>AI and Your Personal Data: Who Owns What You Tell a Chatbot?</h4>
+            <p>As millions of teens use AI tools for homework, creative writing, and emotional support, a major question has emerged: can companies use your conversations to train future AI models? Most terms of service allow this by default. California regulators are now examining whether CPRA's opt-out rights apply to AI training data — a ruling that could reshape how every major AI company operates.</p>
           </div>
+        </div>
 
-          <div class="hot-topic" style="border-left-color:var(--green)">
-            <div class="ht-num">03</div>
-            <div class="ht-content">
-              <h4>The Impact of Social Media on Teen Mental Health</h4>
-              <p>The debate around the impact of social media on teen mental health continues to grow, with some arguing that social media companies like Instagram and TikTok have a responsibility to protect the mental health of their users. There are calls for social media companies to implement stricter guidelines and regulations around online content, as well as for parents and educators to take a more active role in monitoring and guiding teens' social media use.</p>
-            </div>
+        <div class="hot-topic" style="border-left-color:var(--green)">
+          <div class="ht-num">03</div>
+          <div class="ht-content">
+            <h4>Age Verification Online: Privacy Protection or Privacy Risk?</h4>
+            <p>Several states have passed laws requiring social media platforms to verify users' ages before sign-up — but privacy experts warn that age verification itself creates major risks, since it typically requires uploading a government ID. California is weighing an approach that puts the burden on platforms rather than users, potentially through device-level age signals rather than document uploads. No clear solution exists yet.</p>
           </div>
+        </div>
 
-          <div class="hot-topic" style="border-left-color:#c0392b">
-            <div class="ht-num">04</div>
-            <div class="ht-content">
-              <h4>The Role of AI in Data Privacy Regulation</h4>
-              <p>There is an ongoing debate about the role of AI in data privacy regulation, with some arguing that AI-powered tools can help to improve data privacy enforcement, while others raise concerns about the potential for AI to exacerbate existing biases and inequalities. As AI becomes more prevalent in data privacy regulation, there are calls for greater transparency and accountability in the development and deployment of AI-powered regulatory tools.</p>
-            </div>
+        <div class="hot-topic" style="border-left-color:#c0392b">
+          <div class="ht-num">04</div>
+          <div class="ht-content">
+            <h4>School Surveillance Tech: Safety Tool or Privacy Violation?</h4>
+            <p>Many California school districts now use AI-powered monitoring software that scans students' devices for signs of self-harm, bullying, or threats — including flagging private messages and search history. Supporters say it saves lives; critics argue it normalizes surveillance for an entire generation. A pending California bill would require schools to notify students and parents any time a monitoring alert is reviewed by a human administrator.</p>
           </div>
+        </div>
+
       </div>
       <div class="callout" style="margin-top:32px;">
         <strong>Stay Informed</strong>
@@ -179,7 +282,7 @@
     <div class="footer-copy">© 2025 CalInformed. Informational purposes only. Not legal advice.</div>
   </footer>
 
-  <script>
+<script>
     function filterNews(btn, category) {
       document.querySelectorAll('.topic-filter').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
