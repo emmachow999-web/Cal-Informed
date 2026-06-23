@@ -4,293 +4,367 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>News — CalInformed</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --purple: #7D3CAF; --navy: #303778; --cream: #FFFADB; --white: #ffffff;
-      --dark: #1a1a2e; --gray: #f4f1f8; --purple-light: #c9a8e8;
-      --purple-dark: #5a2880; --green: #3d6e57; --shadow: 0 4px 24px rgba(125,60,175,0.15);
+      --purple: #7D3CAF;
+      --navy: #303778;
+      --cream: #FFFADB;
+      --white: #ffffff;
+      --dark: #1a1a2e;
+      --gray: #f4f1f8;
+      --purple-light: #c9a8e8;
+      --purple-dark: #5a2880;
+      --green: #3d6e57;
+      --shadow: 0 4px 24px rgba(125,60,175,0.15);
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Georgia', serif; background-color: var(--cream); color: var(--dark); overflow-x: hidden; }
+    body {
+      font-family: Georgia, serif;
+      background: var(--cream);
+      color: var(--dark);
+    }
 
     /* NAV */
-    .site-nav { display: flex; justify-content: space-between; align-items: center; background-color: var(--navy); padding: 18px 48px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 20px rgba(0,0,0,0.25); }
-    .nav-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.5rem; color: var(--white); text-decoration: none; }
+    .site-nav {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:var(--navy);
+      padding:18px 48px;
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .nav-logo {
+      font-family:Poppins;
+      font-weight:900;
+      color:white;
+      cursor:pointer;
+      font-size:1.5rem;
+    }
+
     .nav-logo span { color: var(--purple-light); }
-    .nav-links { display: flex; gap: 10px; flex-wrap: wrap; }
-    .nav-links a { display: inline-block; color: var(--white); background-color: rgba(125,60,175,0.25); padding: 10px 18px; border-radius: 8px; text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); transition: background-color 0.2s, transform 0.15s; }
-    .nav-links a:hover, .nav-links a.active { background-color: var(--purple); color: var(--cream); transform: translateY(-2px); }
 
-    /* PAGE HERO */
-    .page-hero { background: linear-gradient(135deg, var(--navy) 0%, var(--purple-dark) 50%, var(--purple) 100%); color: var(--white); padding: 72px 48px 60px; display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; overflow: hidden; }
-    .page-hero::before { content: ''; position: absolute; top: -60px; right: -60px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%); border-radius: 50%; }
-    .hero-eyebrow { font-family: 'Poppins', sans-serif; font-size: 0.78rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple-light); margin-bottom: 16px; }
-    .page-hero h1 { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.15; max-width: 760px; margin-bottom: 20px; position: relative; z-index: 1; }
-    .page-hero h1 em { color: var(--purple-light); font-style: normal; }
-    .page-hero > p { font-size: 1.05rem; max-width: 580px; line-height: 1.8; color: rgba(255,255,255,0.85); position: relative; z-index: 1; }
+    .nav-links {
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
 
-    /* LAYOUT */
-    .section { padding: 72px 48px; }
-    .section.gray { background-color: var(--gray); }
-    .inner { max-width: 1100px; margin: 0 auto; }
+    .nav-btn {
+      color:white;
+      text-decoration:none;
+      font-family:Poppins;
+      font-size:0.85rem;
+      font-weight:600;
+      padding:10px 16px;
+      border-radius:8px;
+      background:rgba(125,60,175,0.25);
+      transition:0.2s;
+    }
 
-    .section-label { font-family: 'Poppins', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin-bottom: 10px; }
-    .section-title { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: clamp(1.5rem, 3vw, 2rem); color: var(--navy); margin-bottom: 12px; line-height: 1.2; }
-    .section-subtitle { font-size: 1rem; color: #666; line-height: 1.75; margin-bottom: 40px; max-width: 640px; }
+    .nav-btn:hover,
+    .nav-btn.active {
+      background:var(--purple);
+      transform:translateY(-2px);
+    }
 
-    .prose { font-size: 1rem; line-height: 1.85; color: #444; max-width: 720px; }
-    .prose + .prose { margin-top: 18px; }
-    .prose strong { color: var(--navy); }
+    /* HERO */
+    .page-hero {
+      text-align:center;
+      padding:70px 40px;
+      background:linear-gradient(135deg,var(--navy),var(--purple-dark),var(--purple));
+      color:white;
+    }
 
-    /* TWO COL */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-    @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+    .hero-eyebrow {
+      font-family:Poppins;
+      letter-spacing:3px;
+      font-size:0.8rem;
+      color:var(--purple-light);
+    }
 
-    /* CARDS */
-    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin-top: 36px; }
-    .card { background: var(--white); border-radius: 14px; padding: 28px 26px; box-shadow: var(--shadow); border-top: 4px solid var(--purple); transition: transform 0.22s, box-shadow 0.22s; }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(125,60,175,0.18); }
-    .card.navy { border-top-color: var(--navy); }
-    .card.green { border-top-color: var(--green); }
-    .card-icon { width: 46px; height: 46px; border-radius: 12px; background: rgba(125,60,175,0.1); display: flex; align-items: center; justify-content: center; color: var(--purple); margin-bottom: 16px; }
-    .card.navy .card-icon { background: rgba(48,55,120,0.1); color: var(--navy); }
-    .card.green .card-icon { background: rgba(61,110,87,0.1); color: var(--green); }
-    .card h3 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--navy); margin-bottom: 8px; }
-    .card p { font-size: 0.91rem; line-height: 1.7; color: #555; }
+    .page-hero h1 {
+      font-family:Poppins;
+      font-weight:900;
+      font-size:2.5rem;
+      margin:10px 0;
+    }
 
-    /* CALLOUT */
-    .callout { border-left: 4px solid var(--purple); background: rgba(125,60,175,0.06); border-radius: 0 10px 10px 0; padding: 20px 24px; margin: 28px 0; font-size: 0.97rem; line-height: 1.75; color: #444; }
-    .callout strong { display: block; font-family: 'Poppins', sans-serif; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: var(--purple); margin-bottom: 6px; }
-    .callout.navy { border-left-color: var(--navy); background: rgba(48,55,120,0.05); }
-    .callout.navy strong { color: var(--navy); }
+    .page-hero em { color: var(--purple-light); }
 
-    /* QUOTE BANNER */
-    .quote-banner { background: linear-gradient(120deg, var(--navy) 0%, var(--purple-dark) 100%); color: var(--white); padding: 56px 48px; text-align: center; }
-    .quote-banner blockquote { font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-style: italic; max-width: 720px; margin: 0 auto 16px; line-height: 1.65; }
-    .quote-banner cite { font-size: 0.82rem; color: rgba(255,255,255,0.6); font-style: normal; font-family: 'Poppins', sans-serif; }
+    /* SECTION */
+    .section { padding:60px 40px; }
+    .section.gray { background:var(--gray); }
+    .inner { max-width:1100px; margin:auto; }
 
-    /* MYTH/FACT */
-    .myth-grid { display: flex; flex-direction: column; gap: 18px; margin-top: 32px; }
-    .myth-item { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
-    .myth-item .myth { background: #fce8e8; padding: 20px 22px; }
-    .myth-item .fact { background: #e8f4f0; padding: 20px 22px; }
-    .myth-item .myth-label { font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #c0392b; margin-bottom: 6px; }
-    .myth-item .fact-label { font-family: 'Poppins', sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
-    .myth-item p { font-size: 0.92rem; line-height: 1.65; color: #333; }
-    @media (max-width: 600px) { .myth-item { grid-template-columns: 1fr; } }
+    .section-title {
+      font-family:Poppins;
+      font-weight:800;
+      color:var(--navy);
+    }
 
-    /* DATA TYPES */
-    .data-types { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 32px; }
-    .data-type { background: var(--white); border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); text-align: center; }
-    .data-type .dt-icon { font-size: 1.8rem; margin-bottom: 10px; }
-    .data-type h4 { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--navy); margin-bottom: 6px; }
-    .data-type p { font-size: 0.82rem; line-height: 1.6; color: #666; }
+    .section-label {
+      font-family:Poppins;
+      font-size:0.75rem;
+      letter-spacing:3px;
+      text-transform:uppercase;
+      color:var(--purple);
+    }
+
+    /* FILTERS */
+    .topic-filter {
+      font-family:Poppins;
+      font-size:0.75rem;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid #ddd;
+      background:white;
+      cursor:pointer;
+    }
+
+    .topic-filter.active,
+    .topic-filter:hover {
+      background:var(--purple);
+      color:white;
+    }
+
+    /* NEWS GRID */
+    .news-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:20px;
+    }
+
+    .news-card {
+      background:white;
+      border-radius:14px;
+      padding:20px;
+      box-shadow:var(--shadow);
+      border-top:4px solid var(--purple);
+      transition:0.2s;
+    }
+
+    .news-card:hover {
+      transform:translateY(-4px);
+    }
+
+    .news-card h3 {
+      font-family:Poppins;
+      font-size:1rem;
+      margin-top:10px;
+      color:var(--navy);
+    }
+
+    .news-card p {
+      font-size:0.9rem;
+      line-height:1.6;
+      margin:10px 0;
+      color:#555;
+    }
+
+    .news-card-footer {
+      display:flex;
+      justify-content:space-between;
+      font-size:0.75rem;
+      color:#888;
+    }
+
+    .read-more {
+      color:var(--purple);
+      font-weight:600;
+      text-decoration:none;
+    }
+
+    /* TAGS */
+    .news-tag {
+      font-family:Poppins;
+      font-size:0.7rem;
+      padding:4px 10px;
+      border-radius:999px;
+      color:white;
+    }
+
+    .purple { background:var(--purple); }
+    .green { background:var(--green); }
+    .navy { background:var(--navy); }
+    .red { background:#c0392b; }
+
+    /* HOT TOPICS */
+    .hot-topics {
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      margin-top:20px;
+    }
+
+    .hot-topic {
+      display:flex;
+      gap:16px;
+      padding:18px;
+      background:white;
+      border-radius:12px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .ht-num {
+      font-family:Poppins;
+      font-weight:900;
+      font-size:1.2rem;
+      color:#999;
+    }
+
+    .ht-content h4 {
+      font-family:Poppins;
+      color:var(--navy);
+      margin-bottom:5px;
+    }
 
     /* FOOTER */
-    .site-footer { display: flex; justify-content: space-between; align-items: center; background-color: var(--dark); color: rgba(255,255,255,0.6); padding: 28px 48px; flex-wrap: wrap; gap: 16px; }
-    .footer-logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 1.2rem; color: var(--white); text-decoration: none; }
-    .footer-logo span { color: var(--purple-light); }
-    .footer-links { display: flex; gap: 20px; }
-    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-family: 'Poppins', sans-serif; font-size: 0.85rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--purple-light); }
-    .footer-copy { font-family: 'Poppins', sans-serif; font-size: 0.8rem; color: rgba(255,255,255,0.4); width: 100%; text-align: center; margin-top: 8px; }
-
-    @media (max-width: 700px) {
-      .site-nav { flex-direction: column; gap: 16px; padding: 20px 24px; }
-      .page-hero { padding: 56px 24px 48px; }
-      .section { padding: 56px 24px; }
-      .quote-banner { padding: 48px 24px; }
-      .site-footer { flex-direction: column; text-align: center; padding: 28px 24px; }
-      .footer-links { justify-content: center; }
+    .site-footer {
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      padding:30px 40px;
+      background:#1a1a2e;
+      color:rgba(255,255,255,0.6);
     }
+
+    .footer-logo {
+      font-family:Poppins;
+      font-weight:900;
+      color:white;
+    }
+
+    .footer-logo span { color:var(--purple-light); }
   </style>
 </head>
+
 <body>
 
-  <nav class="site-nav">
+<nav class="site-nav">
   <div class="nav-logo" onclick="location.href='../index.html'">Cal<span>Informed</span></div>
   <div class="nav-links">
-    <a href="what-is-data-privacy.html" class="nav-btn">What is Data Privacy?</a>
-    <a href="california-privacy-laws.html" class="nav-btn">California Privacy Laws</a>
-    <a href="protect-yourself.html" class="nav-btn">Protect Yourself</a>
-    <a href="news.html" class="nav-btn active">News</a>
-    <a href="resources.html" class="nav-btn">Resources</a>
-    <a href="articles.html" class="nav-btn">Articles</a>
-    <a href="about.html" class="nav-btn">About</a>
+    <a class="nav-btn" href="what-is-data-privacy.html">What is Data Privacy?</a>
+    <a class="nav-btn" href="california-privacy-laws.html">California Privacy Laws</a>
+    <a class="nav-btn" href="protect-yourself.html">Protect Yourself</a>
+    <a class="nav-btn active" href="news.html">News</a>
+    <a class="nav-btn" href="resources.html">Resources</a>
+    <a class="nav-btn" href="articles.html">Articles</a>
+    <a class="nav-btn" href="about.html">About</a>
   </div>
 </nav>
 
-  <header class="page-hero">
-    <p class="hero-eyebrow">&#x2022; News &amp; Updates &#x2022;</p>
-    <h1>What's Happening in <em>Data Privacy</em> Right Now</h1>
-    <p>Updated daily by AI — stories across California privacy law, teen safety, data breaches, and Big Tech.</p>
-  </header>
+<header class="page-hero">
+  <p class="hero-eyebrow">• News & Updates •</p>
+  <h1>What's Happening in <em>Data Privacy</em> Right Now</h1>
+</header>
 
-  <div class="section">
-    <div class="inner">
+<section class="section">
+  <div class="inner">
 
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px; align-items:center;">
-        <span style="font-family:'Poppins',sans-serif; font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#999;">Filter:</span>
-        <button class="topic-filter active" onclick="filterNews(this,'all')">All Topics</button>
-        <button class="topic-filter" onclick="filterNews(this,'california')">California Laws</button>
-        <button class="topic-filter" onclick="filterNews(this,'minors')">Teen &amp; Minors</button>
-        <button class="topic-filter" onclick="filterNews(this,'breaches')">Data Breaches</button>
-        <button class="topic-filter" onclick="filterNews(this,'bigtech')">Big Tech</button>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
+      <button class="topic-filter active" onclick="filterNews(this,'all')">All</button>
+      <button class="topic-filter" onclick="filterNews(this,'california')">California</button>
+      <button class="topic-filter" onclick="filterNews(this,'minors')">Minors</button>
+      <button class="topic-filter" onclick="filterNews(this,'breaches')">Breaches</button>
+      <button class="topic-filter" onclick="filterNews(this,'bigtech')">Big Tech</button>
+    </div>
+
+    <h2 class="section-title">Latest Privacy News</h2>
+
+    <div id="news-grid" class="news-grid">
+
+      <div class="news-card" data-category="california">
+        <span class="news-tag purple">California</span>
+        <h3>New California Privacy Bill</h3>
+        <p>California strengthens protections for minors' online data.</p>
+        <div class="news-card-footer">
+          <span>June 2026</span>
+          <a class="read-more" href="#">Read →</a>
+        </div>
       </div>
 
-      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; flex-wrap:wrap; gap:12px;">
-        <div>
-          <p class="section-label" style="margin-bottom:4px;">Auto-Updated Feed</p>
-          <h2 class="section-title" style="margin-bottom:0;">Latest Privacy News</h2>
-        </div>
-        <div style="font-family:'Poppins',sans-serif; font-size:0.78rem; color:#999;">
-          <span class="live-badge"><span class="live-dot"></span>Last updated: June 23, 2026</span>
+      <div class="news-card" data-category="minors">
+        <span class="news-tag green">Minors</span>
+        <h3>Teen Privacy Concerns Rise</h3>
+        <p>Majority of teens worry about social media tracking.</p>
+        <div class="news-card-footer">
+          <span>June 2026</span>
+          <a class="read-more" href="#">Read →</a>
         </div>
       </div>
 
-      <div id="news-grid" class="news-grid">
-
-        <div class="news-card" data-category="california">
-          <div class="news-card-header">
-            <span class="news-tag purple">California Laws</span>
-            <h3>California Passes New Bill to Protect Minors' Online Data</h3>
-          </div>
-          <p>As of June 2026, California has passed a new bill that requires social media companies to prioritize the safety and well-being of minors online. The bill aims to limit the collection of minors' personal data and restrict the use of algorithms that may harm young people. This bill is a significant step forward in protecting California teens' online privacy.</p>
-          <div class="news-card-footer">
-            <span>June 2026</span>
-            <a href="https://leginfo.legislature.ca.gov/" target="_blank" rel="noopener" class="read-more">California State Legislature →</a>
-          </div>
+      <div class="news-card" data-category="breaches">
+        <span class="news-tag navy">Breaches</span>
+        <h3>Massive Data Breach</h3>
+        <p>Millions affected by major security failure.</p>
+        <div class="news-card-footer">
+          <span>June 2026</span>
+          <a class="read-more" href="#">Read →</a>
         </div>
+      </div>
 
-        <div class="news-card" data-category="minors">
-          <div class="news-card-header">
-            <span class="news-tag green">Teen & Minors</span>
-            <h3>New Study Reveals Teens' Concerns About Online Data Collection</h3>
-          </div>
-          <p>A recent study by the Pew Research Center found that 54% of teens aged 13-17 are concerned about the amount of personal data collected by social media companies. The study also found that 60% of teens believe that social media companies should do more to protect their online privacy. These findings highlight the need for greater transparency and accountability in online data collection practices.</p>
-          <div class="news-card-footer">
-            <span>June 2026</span>
-            <a href="https://www.pewresearch.org/" target="_blank" rel="noopener" class="read-more">Pew Research Center →</a>
-          </div>
-        </div>
-
-        <div class="news-card" data-category="breaches">
-          <div class="news-card-header">
-            <span class="news-tag navy">Data Breaches</span>
-            <h3>Major Data Breach Exposes Personal Data of Millions of Americans</h3>
-          </div>
-          <p>In a recent data breach, the personal data of millions of Americans was exposed, including sensitive information such as social security numbers and credit card details. The breach highlights the need for companies to prioritize data security and protect consumers' personal information. The Federal Trade Commission (FTC) has launched an investigation into the breach.</p>
-          <div class="news-card-footer">
-            <span>June 2026</span>
-            <a href="https://www.ftc.gov/" target="_blank" rel="noopener" class="read-more">Federal Trade Commission →</a>
-          </div>
-        </div>
-
-        <div class="news-card" data-category="bigtech">
-          <div class="news-card-header">
-            <span class="news-tag red">Big Tech</span>
-            <h3>Google Faces Lawsuit Over Alleged Violations of Children's Online Privacy</h3>
-          </div>
-          <p>A lawsuit has been filed against Google alleging that the company has violated the Children's Online Privacy Protection Act (COPPA) by collecting personal data from children without parental consent. The lawsuit claims that Google has failed to provide adequate protections for children's online privacy and seeks damages for the alleged violations.</p>
-          <div class="news-card-footer">
-            <span>June 2026</span>
-            <a href="https://www.reuters.com/" target="_blank" rel="noopener" class="read-more">Reuters →</a>
-          </div>
-        </div>
-
-        <div class="news-card" data-category="california">
-          <div class="news-card-header">
-            <span class="news-tag purple">California Laws</span>
-            <h3>California Attorney General Announces New Efforts to Enforce State's Data Privacy Law</h3>
-          </div>
-          <p>The California Attorney General has announced new efforts to enforce the state's data privacy law, including the establishment of a new task force to investigate and prosecute companies that violate the law. The task force will focus on companies that fail to provide adequate notice to consumers about data collection practices and those that do not provide consumers with adequate controls over their personal data.</p>
-          <div class="news-card-footer">
-            <span>June 2026</span>
-            <a href="https://oag.ca.gov/" target="_blank" rel="noopener" class="read-more">California Department of Justice →</a>
-          </div>
-        </div>
-
-        <div class="news-card" data-category="minors">
-          <div class="news-card-header">
-            <span class="news-tag green">Teen & Minors</span>
-            <h3>New Report Highlights Risks of Social Media Addiction Among Teens</h3>
-          </div>
-          <p>A new report by the American Psychological Association (APA) highlights the risks of social media addiction among teens, including increased symptoms of depression and anxiety. The report found that teens who spend more time on social media are more likely to experience negative effects on their mental health and well-being.</p>
-          <div class="news-card-footer">
-            <span>June 2026</span>
-            <a href="https://www.apa.org/" target="_blank" rel="noopener" class="read-more">American Psychological Association →</a>
-          </div>
+      <div class="news-card" data-category="bigtech">
+        <span class="news-tag red">Big Tech</span>
+        <h3>Big Tech Privacy Lawsuit</h3>
+        <p>Companies face lawsuits over children's data collection.</p>
+        <div class="news-card-footer">
+          <span>June 2026</span>
+          <a class="read-more" href="#">Read →</a>
         </div>
       </div>
 
     </div>
   </div>
+</section>
 
-  <div class="section gray">
-    <div class="inner">
-      <p class="section-label">Ongoing Debates</p>
-      <h2 class="section-title">The Biggest Privacy Questions Right Now</h2>
-      <p class="section-subtitle">These debates shape the laws of tomorrow — and they affect you directly.</p>
-      <div class="hot-topics">
+<section class="section gray">
+  <div class="inner">
+    <h2 class="section-title">Big Privacy Questions</h2>
 
-          <div class="hot-topic" style="border-left-color:var(--purple)">
-            <div class="ht-num">01</div>
-            <div class="ht-content">
-              <h4>The Future of Online Data Collection: Should Companies Be Required to Obtain Explicit Consent?</h4>
-              <p>As concerns about online data collection continue to grow, there is an ongoing debate about whether companies should be required to obtain explicit consent from consumers before collecting their personal data. Some argue that explicit consent is necessary to protect consumers' privacy, while others claim that it would be too burdensome for companies and stifle innovation. As of June 2026, this debate is ongoing, with lawmakers and regulators considering new legislation to address the issue.</p>
-            </div>
-          </div>
+    <div class="hot-topics">
 
-          <div class="hot-topic" style="border-left-color:var(--navy)">
-            <div class="ht-num">02</div>
-            <div class="ht-content">
-              <h4>The Role of Artificial Intelligence in Data Privacy: Benefits and Risks</h4>
-              <p>The use of artificial intelligence (AI) in data collection and analysis is becoming increasingly common, but it also raises concerns about data privacy. On one hand, AI can help companies to better protect consumers' personal data by detecting and preventing data breaches. On the other hand, AI can also be used to collect and analyze large amounts of personal data without consumers' knowledge or consent. As of June 2026, there is an ongoing debate about the benefits and risks of using AI in data privacy.</p>
-            </div>
-          </div>
-
-          <div class="hot-topic" style="border-left-color:var(--green)">
-            <div class="ht-num">03</div>
-            <div class="ht-content">
-              <h4>The Impact of Social Media on Teens' Mental Health: Should Companies Be Held Accountable?</h4>
-              <p>There is growing concern about the impact of social media on teens' mental health, with some studies suggesting that excessive social media use can lead to increased symptoms of depression and anxiety. As of June 2026, there is an ongoing debate about whether social media companies should be held accountable for the potential negative effects of their platforms on teens' mental health. Some argue that companies have a responsibility to protect their users' well-being, while others claim that parents and caregivers should be responsible for monitoring their children's social media use.</p>
-            </div>
-          </div>
-
-          <div class="hot-topic" style="border-left-color:#c0392b">
-            <div class="ht-num">04</div>
-            <div class="ht-content">
-              <h4>The Tension Between Data Privacy and National Security: Finding a Balance</h4>
-              <p>The collection and analysis of personal data can be an important tool for national security, but it also raises concerns about data privacy. As of June 2026, there is an ongoing debate about how to balance the need for national security with the need to protect consumers' personal data. Some argue that companies should be required to provide law enforcement agencies with access to personal data in certain circumstances, while others claim that this would be a violation of consumers' privacy rights.</p>
-            </div>
-          </div>
+      <div class="hot-topic">
+        <div class="ht-num">01</div>
+        <div class="ht-content">
+          <h4>Should companies require consent?</h4>
+        </div>
       </div>
-      <div class="callout" style="margin-top:32px;">
-        <strong>Stay Informed</strong>
-        For the most current developments, follow the California Privacy Protection Agency at cppa.ca.gov,
-        the Electronic Frontier Foundation at eff.org, and the California AG's privacy page at oag.ca.gov/privacy.
+
+      <div class="hot-topic">
+        <div class="ht-num">02</div>
+        <div class="ht-content">
+          <h4>Is AI helping or harming privacy?</h4>
+        </div>
       </div>
+
     </div>
   </div>
+</section>
 
-  <footer class="site-footer">
-    <div class="footer-logo" onclick="location.href='../index.html'">Cal<span>Informed</span></div>
-    <div class="footer-links"><a href="#">Instagram</a><a href="#">GitHub</a><a href="#">Twitter</a></div>
-    <div class="footer-copy">© 2025 CalInformed. Informational purposes only. Not legal advice.</div>
-  </footer>
+<footer class="site-footer">
+  <div class="footer-logo">Cal<span>Informed</span></div>
+</footer>
 
-  <script>
-    function filterNews(btn, category) {
-      document.querySelectorAll('.topic-filter').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      document.querySelectorAll('#news-grid .news-card').forEach(card => {
-        card.style.display = (category === 'all' || card.dataset.category === category) ? '' : 'none';
-      });
-    }
-  </script>
+<script>
+function filterNews(btn, category) {
+  document.querySelectorAll('.topic-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  document.querySelectorAll('.news-card').forEach(card => {
+    card.style.display =
+      (category === 'all' || card.dataset.category === category)
+        ? 'block'
+        : 'none';
+  });
+}
+</script>
 
 </body>
 </html>
