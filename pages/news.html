@@ -4,367 +4,190 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>News — CalInformed</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap" rel="stylesheet" />
-
-  <style>
-    :root {
-      --purple: #7D3CAF;
-      --navy: #303778;
-      --cream: #FFFADB;
-      --white: #ffffff;
-      --dark: #1a1a2e;
-      --gray: #f4f1f8;
-      --purple-light: #c9a8e8;
-      --purple-dark: #5a2880;
-      --green: #3d6e57;
-      --shadow: 0 4px 24px rgba(125,60,175,0.15);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: Georgia, serif;
-      background: var(--cream);
-      color: var(--dark);
-    }
-
-    /* NAV */
-    .site-nav {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      background:var(--navy);
-      padding:18px 48px;
-      position:sticky;
-      top:0;
-      z-index:100;
-    }
-
-    .nav-logo {
-      font-family:Poppins;
-      font-weight:900;
-      color:white;
-      cursor:pointer;
-      font-size:1.5rem;
-    }
-
-    .nav-logo span { color: var(--purple-light); }
-
-    .nav-links {
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-
-    .nav-btn {
-      color:white;
-      text-decoration:none;
-      font-family:Poppins;
-      font-size:0.85rem;
-      font-weight:600;
-      padding:10px 16px;
-      border-radius:8px;
-      background:rgba(125,60,175,0.25);
-      transition:0.2s;
-    }
-
-    .nav-btn:hover,
-    .nav-btn.active {
-      background:var(--purple);
-      transform:translateY(-2px);
-    }
-
-    /* HERO */
-    .page-hero {
-      text-align:center;
-      padding:70px 40px;
-      background:linear-gradient(135deg,var(--navy),var(--purple-dark),var(--purple));
-      color:white;
-    }
-
-    .hero-eyebrow {
-      font-family:Poppins;
-      letter-spacing:3px;
-      font-size:0.8rem;
-      color:var(--purple-light);
-    }
-
-    .page-hero h1 {
-      font-family:Poppins;
-      font-weight:900;
-      font-size:2.5rem;
-      margin:10px 0;
-    }
-
-    .page-hero em { color: var(--purple-light); }
-
-    /* SECTION */
-    .section { padding:60px 40px; }
-    .section.gray { background:var(--gray); }
-    .inner { max-width:1100px; margin:auto; }
-
-    .section-title {
-      font-family:Poppins;
-      font-weight:800;
-      color:var(--navy);
-    }
-
-    .section-label {
-      font-family:Poppins;
-      font-size:0.75rem;
-      letter-spacing:3px;
-      text-transform:uppercase;
-      color:var(--purple);
-    }
-
-    /* FILTERS */
-    .topic-filter {
-      font-family:Poppins;
-      font-size:0.75rem;
-      padding:8px 14px;
-      border-radius:999px;
-      border:1px solid #ddd;
-      background:white;
-      cursor:pointer;
-    }
-
-    .topic-filter.active,
-    .topic-filter:hover {
-      background:var(--purple);
-      color:white;
-    }
-
-    /* NEWS GRID */
-    .news-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:20px;
-    }
-
-    .news-card {
-      background:white;
-      border-radius:14px;
-      padding:20px;
-      box-shadow:var(--shadow);
-      border-top:4px solid var(--purple);
-      transition:0.2s;
-    }
-
-    .news-card:hover {
-      transform:translateY(-4px);
-    }
-
-    .news-card h3 {
-      font-family:Poppins;
-      font-size:1rem;
-      margin-top:10px;
-      color:var(--navy);
-    }
-
-    .news-card p {
-      font-size:0.9rem;
-      line-height:1.6;
-      margin:10px 0;
-      color:#555;
-    }
-
-    .news-card-footer {
-      display:flex;
-      justify-content:space-between;
-      font-size:0.75rem;
-      color:#888;
-    }
-
-    .read-more {
-      color:var(--purple);
-      font-weight:600;
-      text-decoration:none;
-    }
-
-    /* TAGS */
-    .news-tag {
-      font-family:Poppins;
-      font-size:0.7rem;
-      padding:4px 10px;
-      border-radius:999px;
-      color:white;
-    }
-
-    .purple { background:var(--purple); }
-    .green { background:var(--green); }
-    .navy { background:var(--navy); }
-    .red { background:#c0392b; }
-
-    /* HOT TOPICS */
-    .hot-topics {
-      display:flex;
-      flex-direction:column;
-      gap:16px;
-      margin-top:20px;
-    }
-
-    .hot-topic {
-      display:flex;
-      gap:16px;
-      padding:18px;
-      background:white;
-      border-radius:12px;
-      box-shadow:0 2px 10px rgba(0,0,0,0.08);
-    }
-
-    .ht-num {
-      font-family:Poppins;
-      font-weight:900;
-      font-size:1.2rem;
-      color:#999;
-    }
-
-    .ht-content h4 {
-      font-family:Poppins;
-      color:var(--navy);
-      margin-bottom:5px;
-    }
-
-    /* FOOTER */
-    .site-footer {
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      padding:30px 40px;
-      background:#1a1a2e;
-      color:rgba(255,255,255,0.6);
-    }
-
-    .footer-logo {
-      font-family:Poppins;
-      font-weight:900;
-      color:white;
-    }
-
-    .footer-logo span { color:var(--purple-light); }
-  </style>
+  <link rel="stylesheet" href="../styles.css" />
 </head>
-
 <body>
 
-<nav class="site-nav">
-  <div class="nav-logo" onclick="location.href='../index.html'">Cal<span>Informed</span></div>
-  <div class="nav-links">
-    <a class="nav-btn" href="what-is-data-privacy.html">What is Data Privacy?</a>
-    <a class="nav-btn" href="california-privacy-laws.html">California Privacy Laws</a>
-    <a class="nav-btn" href="protect-yourself.html">Protect Yourself</a>
-    <a class="nav-btn active" href="news.html">News</a>
-    <a class="nav-btn" href="resources.html">Resources</a>
-    <a class="nav-btn" href="articles.html">Articles</a>
-    <a class="nav-btn" href="about.html">About</a>
-  </div>
-</nav>
-
-<header class="page-hero">
-  <p class="hero-eyebrow">• News & Updates •</p>
-  <h1>What's Happening in <em>Data Privacy</em> Right Now</h1>
-</header>
-
-<section class="section">
-  <div class="inner">
-
-    <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:20px;">
-      <button class="topic-filter active" onclick="filterNews(this,'all')">All</button>
-      <button class="topic-filter" onclick="filterNews(this,'california')">California</button>
-      <button class="topic-filter" onclick="filterNews(this,'minors')">Minors</button>
-      <button class="topic-filter" onclick="filterNews(this,'breaches')">Breaches</button>
-      <button class="topic-filter" onclick="filterNews(this,'bigtech')">Big Tech</button>
+  <nav class="site-nav">
+    <div class="nav-logo" onclick="location.href='../index.html'">Cal<span>Informed</span></div>
+    <div class="nav-links">
+      <a href="what-is-data-privacy.html" class="nav-btn">What is Data Privacy?</a>
+      <a href="california-privacy-laws.html" class="nav-btn">California Privacy Laws</a>
+      <a href="protect-yourself.html" class="nav-btn">Protect Yourself</a>
+      <a href="news.html" class="nav-btn active">News</a>
+      <a href="resources.html" class="nav-btn">Resources</a>
     </div>
+  </nav>
 
-    <h2 class="section-title">Latest Privacy News</h2>
+  <header class="page-hero">
+    <p class="hero-eyebrow">&#x2022; News &amp; Updates &#x2022;</p>
+    <h1>What's Happening in <em>Data Privacy</em> Right Now</h1>
+    <p>Updated daily by AI — stories across California privacy law, teen safety, data breaches, and Big Tech.</p>
+  </header>
 
-    <div id="news-grid" class="news-grid">
+  <div class="section">
+    <div class="inner">
 
-      <div class="news-card" data-category="california">
-        <span class="news-tag purple">California</span>
-        <h3>New California Privacy Bill</h3>
-        <p>California strengthens protections for minors' online data.</p>
-        <div class="news-card-footer">
-          <span>June 2026</span>
-          <a class="read-more" href="#">Read →</a>
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px; align-items:center;">
+        <span style="font-family:'Poppins',sans-serif; font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:#999;">Filter:</span>
+        <button class="topic-filter active" onclick="filterNews(this,'all')">All Topics</button>
+        <button class="topic-filter" onclick="filterNews(this,'california')">California Laws</button>
+        <button class="topic-filter" onclick="filterNews(this,'minors')">Teen &amp; Minors</button>
+        <button class="topic-filter" onclick="filterNews(this,'breaches')">Data Breaches</button>
+        <button class="topic-filter" onclick="filterNews(this,'bigtech')">Big Tech</button>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; flex-wrap:wrap; gap:12px;">
+        <div>
+          <p class="section-label" style="margin-bottom:4px;">Auto-Updated Feed</p>
+          <h2 class="section-title" style="margin-bottom:0;">Latest Privacy News</h2>
+        </div>
+        <div style="font-family:'Poppins',sans-serif; font-size:0.78rem; color:#999;">
+          <span class="live-badge"><span class="live-dot"></span>Last updated: June 24, 2026</span>
         </div>
       </div>
 
-      <div class="news-card" data-category="minors">
-        <span class="news-tag green">Minors</span>
-        <h3>Teen Privacy Concerns Rise</h3>
-        <p>Majority of teens worry about social media tracking.</p>
-        <div class="news-card-footer">
-          <span>June 2026</span>
-          <a class="read-more" href="#">Read →</a>
-        </div>
-      </div>
+      <div id="news-grid" class="news-grid">
 
-      <div class="news-card" data-category="breaches">
-        <span class="news-tag navy">Breaches</span>
-        <h3>Massive Data Breach</h3>
-        <p>Millions affected by major security failure.</p>
-        <div class="news-card-footer">
-          <span>June 2026</span>
-          <a class="read-more" href="#">Read →</a>
+        <div class="news-card" data-category="california">
+          <div class="news-card-header">
+            <span class="news-tag purple">California Laws</span>
+            <h3>California Passes New Bill to Protect Minors' Online Data</h3>
+          </div>
+          <p>A new bill passed in California on June 15, 2026, aims to increase online protections for minors by requiring social media platforms to obtain parental consent before collecting or using data from users under 18. The bill is set to take effect in 2027. This move follows similar efforts by other states to enhance online protections for young people.</p>
+          <div class="news-card-footer">
+            <span>June 15, 2026</span>
+            <a href="https://leginfo.legislature.ca.gov/" target="_blank" rel="noopener" class="read-more">California State Legislature →</a>
+          </div>
         </div>
-      </div>
 
-      <div class="news-card" data-category="bigtech">
-        <span class="news-tag red">Big Tech</span>
-        <h3>Big Tech Privacy Lawsuit</h3>
-        <p>Companies face lawsuits over children's data collection.</p>
-        <div class="news-card-footer">
-          <span>June 2026</span>
-          <a class="read-more" href="#">Read →</a>
+        <div class="news-card" data-category="minors">
+          <div class="news-card-header">
+            <span class="news-tag green">Teen & Minors</span>
+            <h3>TikTok Updates Privacy Policy for Teen Users</h3>
+          </div>
+          <p>TikTok announced changes to its privacy policy on June 10, 2026, which include new default settings for teen users that limit who can see and interact with their content. The move comes after increased scrutiny over how social media platforms handle minors' data. TikTok also plans to introduce more tools to help teens manage their online presence.</p>
+          <div class="news-card-footer">
+            <span>June 10, 2026</span>
+            <a href="https://www.tiktok.com/" target="_blank" rel="noopener" class="read-more">TikTok →</a>
+          </div>
+        </div>
+
+        <div class="news-card" data-category="breaches">
+          <div class="news-card-header">
+            <span class="news-tag navy">Data Breaches</span>
+            <h3>Major Data Breach Exposes Personal Data of Millions</h3>
+          </div>
+          <p>A significant data breach was reported on June 20, 2026, affecting several major companies and exposing the personal data of millions of users. The breach, which occurred due to a vulnerability in a third-party service, highlights the ongoing risks of data breaches and the importance of robust cybersecurity measures. Affected companies are notifying users and offering support.</p>
+          <div class="news-card-footer">
+            <span>June 20, 2026</span>
+            <a href="https://www.cisa.gov/" target="_blank" rel="noopener" class="read-more">Cybersecurity and Infrastructure Security Agency (CISA) →</a>
+          </div>
+        </div>
+
+        <div class="news-card" data-category="bigtech">
+          <div class="news-card-header">
+            <span class="news-tag red">Big Tech</span>
+            <h3>Google Faces Antitrust Lawsuit Over Data Practices</h3>
+          </div>
+          <p>On June 12, 2026, Google was hit with an antitrust lawsuit alleging the company engaged in anticompetitive practices related to its data collection and advertising business. The lawsuit, filed by a coalition of state attorneys general, claims Google's dominance in the digital advertising market has allowed it to collect and use vast amounts of user data without sufficient consent or competition.</p>
+          <div class="news-card-footer">
+            <span>June 12, 2026</span>
+            <a href="https://www.naag.org/" target="_blank" rel="noopener" class="read-more">National Association of Attorneys General →</a>
+          </div>
+        </div>
+
+        <div class="news-card" data-category="california">
+          <div class="news-card-header">
+            <span class="news-tag purple">California Laws</span>
+            <h3>California AG Announces New Online Privacy Enforcement Unit</h3>
+          </div>
+          <p>The California Attorney General's office announced on June 18, 2026, the creation of a new enforcement unit dedicated to protecting Californians' online privacy. The unit will focus on enforcing the California Consumer Privacy Act (CCPA) and investigating companies that fail to comply with state privacy laws. This move underscores California's commitment to leading the nation in data privacy protection.</p>
+          <div class="news-card-footer">
+            <span>June 18, 2026</span>
+            <a href="https://oag.ca.gov/" target="_blank" rel="noopener" class="read-more">California Department of Justice →</a>
+          </div>
+        </div>
+
+        <div class="news-card" data-category="minors">
+          <div class="news-card-header">
+            <span class="news-tag green">Teen & Minors</span>
+            <h3>FTC Warns Apps Over COPPA Noncompliance</h3>
+          </div>
+          <p>The Federal Trade Commission (FTC) issued warnings to several mobile app developers on June 22, 2026, for allegedly violating the Children's Online Privacy Protection Act (COPPA). The warnings claim these apps failed to obtain parental consent before collecting personal data from children under 13. The FTC emphasized the importance of COPPA compliance to protect minors' online privacy.</p>
+          <div class="news-card-footer">
+            <span>June 22, 2026</span>
+            <a href="https://www.ftc.gov/" target="_blank" rel="noopener" class="read-more">Federal Trade Commission →</a>
+          </div>
         </div>
       </div>
 
     </div>
   </div>
-</section>
 
-<section class="section gray">
-  <div class="inner">
-    <h2 class="section-title">Big Privacy Questions</h2>
+  <div class="section gray">
+    <div class="inner">
+      <p class="section-label">Ongoing Debates</p>
+      <h2 class="section-title">The Biggest Privacy Questions Right Now</h2>
+      <p class="section-subtitle">These debates shape the laws of tomorrow — and they affect you directly.</p>
+      <div class="hot-topics">
 
-    <div class="hot-topics">
+          <div class="hot-topic" style="border-left-color:var(--purple)">
+            <div class="ht-num">01</div>
+            <div class="ht-content">
+              <h4>The Future of Online Age Verification</h4>
+              <p>As of June 24, 2026, there's an ongoing debate about the best methods for online age verification, especially in the context of enforcing age restrictions on social media and other online services. Proponents of stricter age verification argue it's necessary to protect minors from inappropriate content and data collection, while critics raise concerns about privacy and the potential for age verification technologies to be used for broader surveillance.</p>
+            </div>
+          </div>
 
-      <div class="hot-topic">
-        <div class="ht-num">01</div>
-        <div class="ht-content">
-          <h4>Should companies require consent?</h4>
-        </div>
+          <div class="hot-topic" style="border-left-color:var(--navy)">
+            <div class="ht-num">02</div>
+            <div class="ht-content">
+              <h4>Balancing National Security with Data Privacy</h4>
+              <p>The debate over how to balance national security interests with data privacy rights continues, with many arguing that current surveillance laws and practices infringe upon individuals' right to privacy. As technology advances and more personal data becomes available, finding a balance that protects both national security and individual privacy is a challenging and evolving issue.</p>
+            </div>
+          </div>
+
+          <div class="hot-topic" style="border-left-color:var(--green)">
+            <div class="ht-num">03</div>
+            <div class="ht-content">
+              <h4>The Role of Tech Companies in Shaping Data Privacy Policies</h4>
+              <p>There's an increasing discussion about the role tech companies should play in shaping data privacy policies, with some arguing that these companies have a responsibility to prioritize user privacy and others suggesting that regulatory bodies should take the lead. The involvement of tech companies in policy discussions can bring valuable insights but also raises concerns about their influence on regulations that affect their business interests.</p>
+            </div>
+          </div>
+
+          <div class="hot-topic" style="border-left-color:#c0392b">
+            <div class="ht-num">04</div>
+            <div class="ht-content">
+              <h4>The Impact of AI on Data Privacy</h4>
+              <p>The growing use of Artificial Intelligence (AI) in data collection and analysis has sparked a debate about its impact on data privacy. While AI can help in protecting data by detecting breaches and anomalies, it also raises new privacy concerns, such as the potential for biased decision-making and the misuse of personal data for targeted advertising or surveillance.</p>
+            </div>
+          </div>
       </div>
-
-      <div class="hot-topic">
-        <div class="ht-num">02</div>
-        <div class="ht-content">
-          <h4>Is AI helping or harming privacy?</h4>
-        </div>
+      <div class="callout" style="margin-top:32px;">
+        <strong>Stay Informed</strong>
+        For the most current developments, follow the California Privacy Protection Agency at cppa.ca.gov,
+        the Electronic Frontier Foundation at eff.org, and the California AG's privacy page at oag.ca.gov/privacy.
       </div>
-
     </div>
   </div>
-</section>
 
-<footer class="site-footer">
-  <div class="footer-logo">Cal<span>Informed</span></div>
-</footer>
+  <footer class="site-footer">
+    <div class="footer-logo" onclick="location.href='../index.html'">Cal<span>Informed</span></div>
+    <div class="footer-links"><a href="#">Instagram</a><a href="#">GitHub</a><a href="#">Twitter</a></div>
+    <div class="footer-copy">© 2025 CalInformed. Informational purposes only. Not legal advice.</div>
+  </footer>
 
-<script>
-function filterNews(btn, category) {
-  document.querySelectorAll('.topic-filter').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-
-  document.querySelectorAll('.news-card').forEach(card => {
-    card.style.display =
-      (category === 'all' || card.dataset.category === category)
-        ? 'block'
-        : 'none';
-  });
-}
-</script>
+  <script>
+    function filterNews(btn, category) {
+      document.querySelectorAll('.topic-filter').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#news-grid .news-card').forEach(card => {
+        card.style.display = (category === 'all' || card.dataset.category === category) ? '' : 'none';
+      });
+    }
+  </script>
 
 </body>
 </html>
